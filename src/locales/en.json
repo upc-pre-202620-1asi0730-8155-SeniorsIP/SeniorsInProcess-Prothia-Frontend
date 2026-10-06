@@ -1,0 +1,359 @@
+{
+  "page-not-found": {
+    "title": "Page Not Found",
+    "content": "The path {unavailable-route} is not available.",
+    "go-home": "Go Home"
+  },
+  "errors": {
+    "occurred": "Errors occurred"
+  },
+  "shell": {
+    "brand-tagline": "CLINICAL PORTAL",
+    "main-navigation": "Main navigation",
+    "open-menu": "Open menu",
+    "register-patient": "Register Patient",
+    "sign-out": "Sign out",
+    "subscription-summary": "{plan} subscription • {active} of {total} patients under follow-up"
+  },
+  "dashboard": {
+    "stats": {
+      "monitored": "Patients monitored",
+      "monitored-caption": "100% with active telemetry",
+      "adherence": "Overall home adherence",
+      "adherence-caption": "Clinical goal exceeded (>80%)",
+      "alerts": "Pending postural alerts",
+      "alerts-suffix": "Critical",
+      "alerts-caption": "Require therapist review",
+      "symmetry": "Symmetric gait (>90%)",
+      "symmetry-suffix": "patients",
+      "symmetry-caption": "66.7% of the active cohort"
+    },
+    "alerts": {
+      "title": "Recent Clinical Alerts",
+      "subtitle": "Biomechanical compensation events detected outside the clinic",
+      "view-all": "View all alerts ({count})",
+      "view-record": "View Profile",
+      "inspect": "Inspect Telemetry"
+    },
+    "patients": {
+      "title": "Recent Patients Directory",
+      "subtitle": "Biomechanical progress and compliance with the current plan",
+      "view-all": "View all patients ({count})",
+      "col-patient": "Patient",
+      "col-amputation": "Amputation level",
+      "col-k-level": "K-Level",
+      "col-adherence": "Monthly adherence",
+      "col-symmetry": "Current symmetry",
+      "col-status": "Status",
+      "col-action": "Action",
+      "view-record": "View Record"
+    },
+    "status": {
+      "alert": "Active alert",
+      "critical": "Critical",
+      "stable": "Stable"
+    }
+  },
+  "option": {
+    "dashboard": "General Dashboard",
+    "patients": "Amputee Patients",
+    "prescriptions": "Exercise Prescriptions",
+    "alerts": "Clinical Alerts",
+    "workshops": "Orthopedic Workshops",
+    "reports": "Reports & Analytics",
+    "subscription": "Clinic Subscription"
+  },
+  "patients": {
+    "header": {
+      "title": "Rehabilitation Patients Directory",
+      "subtitle": "{count} active patients registered • Record lookup"
+    },
+    "new": "New Patient",
+    "search-placeholder": "Search by name, ID number or prosthesis ID...",
+    "filters": {
+      "all-levels": "All amputation levels",
+      "all-statuses": "All statuses"
+    },
+    "columns": {
+      "patient": "Patient & Contact",
+      "amputation": "Amputation",
+      "k-level": "K-Level",
+      "prosthesis": "Linked prosthesis",
+      "adherence": "Adherence",
+      "symmetry": "Symmetry",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "alert": "Active alert",
+      "critical": "Critical",
+      "stable": "Stable"
+    },
+    "years": "{age} years old",
+    "record": "Record",
+    "telemetry": "Telemetry",
+    "empty": "No patients match those filters."
+  },
+  "patient-form": {
+    "title": "Register Patient",
+    "full-name": "Full name",
+    "dni": "ID number",
+    "age": "Age",
+    "amputation": "Amputation level",
+    "k-level": "K-Level",
+    "prosthesis-code": "Linked prosthesis ID",
+    "save": "Register",
+    "cancel": "Cancel",
+    "saved": "Patient registered"
+  },
+  "prescription": {
+    "header": {
+      "title": "Prescription & Plan Management",
+      "subtitle": "Design and assign personalized therapeutic routines for home rehabilitation"
+    },
+    "patient-to-prescribe": "Patient to prescribe:",
+    "current-plan": "Current plan:",
+    "current-plan-value": "Phase {phase} ({adherence}% adherence)",
+    "no-plan": "No current plan",
+    "library": "Exercise Library",
+    "available": "{count} available",
+    "search-exercise": "Search exercise...",
+    "add": "+ Add",
+    "plan-title": "Plan to prescribe: Phase {phase} ({name})",
+    "plan-meta": "Duration: {weeks} weeks • Frequency: {days} days a week",
+    "exercise-count": "{count} Exercises",
+    "sets": "Sets",
+    "reps": "Repetitions",
+    "rest": "Rest (sec)",
+    "remove": "Remove",
+    "empty-plan": "Add exercises from the library to build the plan.",
+    "notify": "The patient portal will be notified immediately.",
+    "save": "Save and Assign to Patient",
+    "saved": "Plan assigned",
+    "saved-detail": "{patient}'s plan was saved and notified.",
+    "incomplete": "Fill in sets, repetitions and rest for every exercise."
+  },
+  "alerts": {
+    "header": {
+      "title": "Alerts & Biomechanical Thresholds Center",
+      "subtitle": "Pattern monitoring and sensitivity calibration"
+    },
+    "history": {
+      "title": "Critical Events History",
+      "subtitle": "Events automatically recorded by the biomechanical processing engine",
+      "pending-count": "{count} pending resolution",
+      "columns": {
+        "date": "Date & Time",
+        "patient": "Patient",
+        "deviation": "Deviation Type",
+        "value": "Recorded Value vs. Threshold",
+        "severity": "Severity",
+        "status": "Status",
+        "action": "Action"
+      },
+      "threshold": "Threshold: {threshold}",
+      "severity": {
+        "warning": "Warning",
+        "critical": "Critical"
+      },
+      "status": {
+        "pending": "Pending",
+        "resolved": "Resolved"
+      },
+      "resolve": "Resolve",
+      "attended": "Handled",
+      "resolved-toast": "Alert resolved",
+      "empty": "No events recorded."
+    },
+    "calibration": {
+      "title": "Alert Threshold Calibration per Patient",
+      "subtitle": "Adjust the telemetry trigger sensitivity to match the patient's functional progress",
+      "patient": "Patient:",
+      "save": "Save Threshold Settings",
+      "saved": "Thresholds saved"
+    },
+    "thresholds": {
+      "pelvicTilt": {
+        "label": "Maximum Lateral Pelvic Tilt",
+        "description": "Triggers an alert if the trunk leans more than {value} to either side during stance phase.",
+        "unit": "°"
+      },
+      "asymmetry": {
+        "label": "Bilateral Asymmetry Tolerance",
+        "description": "Triggers an alert if the load difference between the sound leg and the prosthesis exceeds {value}.",
+        "unit": "%"
+      },
+      "cadence": {
+        "label": "Minimum Expected Cadence",
+        "description": "Warns if walking speed drops below the suggested threshold for community {kLevel}.",
+        "unit": " steps/min"
+      },
+      "impactPeak": {
+        "label": "Maximum Impact Load Peak",
+        "description": "Protects the residual limb from destructive compression overloads.",
+        "unit": " × Body Weight"
+      }
+    }
+  },
+  "role-selection": {
+    "badge": "Comprehensive Healthcare & Biomechanics Ecosystem",
+    "title": "Welcome to Prothia",
+    "subtitle": "Select your user profile to enter the dedicated environment designed for your clinical and technical needs:",
+    "system-tag": "Rehabilitation IoT Platform",
+    "switch-role": "Switch Profile",
+    "roles": {
+      "patient": {
+        "tag": "Patient",
+        "title": "Amputee Patient",
+        "institution": "Personal Home Tracking",
+        "desc": "Track your daily prosthesis wear hours, complete prescribed therapy exercises, and stay connected with your clinical team.",
+        "f1": "Real-time step telemetry and gait stability",
+        "f2": "Home rehabilitation routine compliance",
+        "f3": "Early overload alerts and prosthesis status",
+        "cta": "Enter as Patient"
+      },
+      "technician": {
+        "tag": "Orthopedic Workshop",
+        "title": "Orthoprosthetic Technician",
+        "institution": "Advanced Technical Orthopedics S.A.C.",
+        "desc": "Monitor active prosthetic fleet, handle critical fatigue lifecycle alerts, and schedule preventive maintenance.",
+        "f1": "Fleet dashboard with 100% IoT telemetry",
+        "f2": "Mechanical wear alerts and cycle limits",
+        "f3": "Component traceability and technical sheets",
+        "cta": "Enter as Technician"
+      },
+      "therapist": {
+        "tag": "Rehabilitation Clinic",
+        "title": "Clinic Therapist",
+        "institution": "South Lima Physical Rehabilitation Center",
+        "desc": "Manage your amputee patient cohort, prescribe customized exercise plans, and calibrate biomechanical warning thresholds.",
+        "f1": "Patient clinical directory and records",
+        "f2": "Therapeutic plan prescription and tracking",
+        "f3": "Gait asymmetry monitoring and thresholds",
+        "cta": "Enter as Therapist"
+      }
+    }
+  },
+  "technician": {
+    "brand-tagline": "Orthopedic Workshop",
+    "menu": {
+      "fleet-dashboard": "Fleet Dashboard",
+      "fleet": "Prosthetic Fleet",
+      "maintenance": "Preventive Maintenance",
+      "fatigue-alerts": "Fatigue Alerts",
+      "clinics": "Clinic Records",
+      "license": "Software License"
+    },
+    "headers": {
+      "dashboard-title": "Advanced Orthopedic Workshop Inc.",
+      "dashboard-subtitle": "Active Workshop License • 42 prostheses in lifespan telemetry",
+      "fleet-title": "Prosthetic Fleet & Inventory",
+      "fleet-subtitle": "42 active devices • Technical record and lifespan telemetry",
+      "maintenance-title": "Preventive Maintenance",
+      "maintenance-subtitle": "Early technical service scheduling to prevent mechanical failures",
+      "fatigue-title": "Mechanical Fatigue Alert Center",
+      "fatigue-subtitle": "Telemetric alerts triggered when a prosthesis reaches wear or impact limits",
+      "clinics-title": "Shared Clinic Records",
+      "clinics-subtitle": "Physiotherapist-authorized reports to coordinate mechanical calibrations",
+      "license-title": "Workshop Software License Management",
+      "license-subtitle": "Telemetric monitoring of prosthetic fleet and license billing"
+    },
+    "actions": {
+      "register-link": "+ Register / Link Prosthesis",
+      "register": "+ Register Prosthesis",
+      "schedule-maintenance": "+ Schedule Maintenance"
+    },
+    "user-role": "Technical Director • CPO Cat II",
+    "topbar": {
+      "register-action": "Register / Link Prosthesis"
+    },
+    "stats": {
+      "monitored-title": "Monitored Devices",
+      "monitored-suffix": "/ {capacity} capacity",
+      "monitored-caption": "{count} linked patients",
+      "maintenance-title": "Scheduled Maintenance",
+      "maintenance-suffix": "this week",
+      "maintenance-caption": "Preventive revisions",
+      "fatigue-title": "Mechanical Fatigue Alerts",
+      "fatigue-suffix": ">800k cycles",
+      "fatigue-caption": "Urgent elastomer replacement",
+      "hours-title": "Total Accumulated Hours",
+      "hours-suffix": "hours",
+      "hours-caption": "IoT Telemetry at 100%"
+    },
+    "alerts": {
+      "section-title": "Mechanical Wear Alerts",
+      "section-subtitle": "Prostheses that reached the preventive load cycle threshold",
+      "view-all": "View all alerts ({count})",
+      "schedule-button": "Schedule Immediate Revision"
+    },
+    "fleet": {
+      "section-title": "Active Device Fleet",
+      "section-subtitle": "Component traceability, accumulated cycles, and service dates",
+      "view-all": "View full inventory ({count})",
+      "col-serial": "Serial No.",
+      "col-type": "Type & Component",
+      "col-patient": "Associated Patient",
+      "col-clinic": "Linked Clinic",
+      "col-cycles": "Accumulated Cycles",
+      "col-last-service": "Last Service",
+      "col-action": "Action",
+      "action-sheet": "Technical Sheet"
+    },
+    "modals": {
+      "register-title": "Register / Link Prosthesis",
+      "schedule-title": "Schedule Immediate Revision",
+      "detail-title": "Prosthesis Technical Sheet"
+    }
+  },
+  "patient-portal": {
+    "brand-tagline": "PATIENT PORTAL",
+    "role-pill": "Patient Portal",
+    "sensors-connected": "Sensors: Connected ({bat}% Bat)",
+    "user-role": "Transtibial Prosthesis",
+    "signout-tooltip": "Exit to Role Selector",
+    "nav": {
+      "my-day": "My Day",
+      "live-telemetry": "Live Telemetry",
+      "gait-history": "Gait & History",
+      "exercises": "My Exercises",
+      "messages": "Messages"
+    },
+    "my-day": {
+      "greeting": "Hello, {name}",
+      "subtitle": "Today is Saturday, September 12, 2026 • Your weekly progress is 88%",
+      "action-walk": "Start Assisted Walk",
+      "action-plan": "View Today's Plan",
+      "steps-title": "STEPS TODAY",
+      "steps-target": "Goal: 5,000",
+      "symmetry-title": "SUPPORT SYMMETRY",
+      "cadence-title": "AVERAGE CADENCE",
+      "routine-title": "HOME ROUTINE",
+      "therapist-title": "Treating Physiotherapist",
+      "device-title": "Active Device",
+      "adherence-title": "Weekly Adherence",
+      "adherence-week": "Week 34",
+      "adherence-avg": "Weekly average: {percent}%",
+      "view-history": "View Full History →",
+      "mark-done": "Mark as Done",
+      "marked-done": "✓ Completed successfully"
+    },
+    "live-telemetry": {
+      "session-active": "SESSION IN PROGRESS",
+      "pause": "Pause",
+      "resume": "Resume",
+      "finish": "Finish Session",
+      "mode-normal": "Normal Mode",
+      "mode-anomaly": "Simulate Anomaly",
+      "cadence": "Instant Cadence",
+      "distribution": "Support Distribution",
+      "knee-angle": "Knee Flexion Angle",
+      "impact-load": "Impact Peak Load"
+    },
+    "menu": {
+      "dashboard": "My Dashboard",
+      "prosthesis": "My Prosthesis & Telemetry",
+      "exercises": "My Exercises"
+    }
+  }
+}
