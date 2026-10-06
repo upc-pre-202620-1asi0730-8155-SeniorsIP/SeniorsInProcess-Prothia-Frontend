@@ -1,0 +1,730 @@
+{
+  "options": [
+    {
+      "id": 1,
+      "label": "option.dashboard",
+      "to": "/home",
+      "icon": "pi-th-large",
+      "exact": true,
+      "badge": 0,
+      "order": 1
+    },
+    {
+      "id": 2,
+      "label": "option.patients",
+      "to": "/patients",
+      "icon": "pi-users",
+      "exact": false,
+      "badge": 0,
+      "order": 2
+    },
+    {
+      "id": 3,
+      "label": "option.prescriptions",
+      "to": "/prescriptions",
+      "icon": "pi-clipboard",
+      "exact": false,
+      "badge": 0,
+      "order": 3
+    },
+    {
+      "id": 4,
+      "label": "option.alerts",
+      "to": "/alerts",
+      "icon": "pi-exclamation-triangle",
+      "exact": false,
+      "badge": 3,
+      "order": 4
+    },
+    {
+      "id": 5,
+      "label": "option.workshops",
+      "to": "/workshops",
+      "icon": "pi-arrow-right-arrow-left",
+      "exact": false,
+      "badge": 0,
+      "order": 5
+    },
+    {
+      "id": 6,
+      "label": "option.reports",
+      "to": "/reports",
+      "icon": "pi-file",
+      "exact": false,
+      "badge": 0,
+      "order": 6
+    },
+    {
+      "id": 7,
+      "label": "option.subscription",
+      "to": "/subscription",
+      "icon": "pi-credit-card",
+      "exact": false,
+      "badge": 0,
+      "order": 7
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "fullName": "Carlos Mendoza Arias",
+      "dni": "45892104",
+      "age": 38,
+      "amputation": "Transtibial Der.",
+      "kLevel": "K3",
+      "prosthesisCode": "PR-2026-TT-084",
+      "adherence": 88,
+      "symmetry": 92,
+      "status": "alert"
+    },
+    {
+      "id": 2,
+      "fullName": "Roberto Sánchez P.",
+      "dni": "40129845",
+      "age": 45,
+      "amputation": "Transfemoral Izq.",
+      "kLevel": "K2",
+      "prosthesisCode": "PR-2026-TF-012",
+      "adherence": 72,
+      "symmetry": 81,
+      "status": "critical"
+    },
+    {
+      "id": 3,
+      "fullName": "María Vega Castro",
+      "dni": "10845921",
+      "age": 52,
+      "amputation": "Transtibial Bilateral",
+      "kLevel": "K3",
+      "prosthesisCode": "PR-2026-TT-055",
+      "adherence": 95,
+      "symmetry": 96,
+      "status": "stable"
+    },
+    {
+      "id": 4,
+      "fullName": "Jorge Alarcón Ruiz",
+      "dni": "72458912",
+      "age": 29,
+      "amputation": "Transtibial Izq.",
+      "kLevel": "K4",
+      "prosthesisCode": "PR-2026-TT-091",
+      "adherence": 91,
+      "symmetry": 94,
+      "status": "stable"
+    },
+    {
+      "id": 5,
+      "fullName": "Adolfo",
+      "dni": "67895 6",
+      "age": 72,
+      "amputation": "Transtibial Bilateral",
+      "kLevel": "K3",
+      "prosthesisCode": "PR-20056-777",
+      "adherence": 0,
+      "symmetry": 0,
+      "status": "stable"
+    }
+  ],
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Transferencia de Peso Lateral",
+      "focus": [
+        "Equilibrio",
+        "Carga progresiva en muñón"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Elevación de Talón Asistida",
+      "focus": [
+        "Fuerza",
+        "Tríceps sural y estabilidad"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Puente de Glúteos con Prótesis",
+      "focus": [
+        "Extensión de cadera",
+        "Anti-compensación lumbar"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Subida de Escalón (Step-up) 10 cm",
+      "focus": [
+        "Coordinación",
+        "Potencia cuádriceps"
+      ]
+    }
+  ],
+  "prescriptions": [
+    {
+      "id": 1,
+      "patientId": 1,
+      "phaseNumber": 2,
+      "phaseName": "Ajuste",
+      "durationWeeks": 4,
+      "frequencyPerWeek": 5,
+      "exercises": [
+        {
+          "exerciseId": 1,
+          "name": "Transferencia de Peso Lateral y Apoyo Unipodal",
+          "sets": null,
+          "reps": null,
+          "restSeconds": null
+        },
+        {
+          "exerciseId": 2,
+          "name": "Elevación de Talón Asistida en Barra",
+          "sets": null,
+          "reps": null,
+          "restSeconds": null
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "patientId": 1,
+      "patientName": "Carlos Mendoza",
+      "deviationType": "Inclinación Pélvica Lateral",
+      "recordedValue": "+14°",
+      "threshold": ">12°",
+      "severity": "warning",
+      "status": "pending",
+      "occurredAt": "2026-09-12T10:15:00"
+    },
+    {
+      "id": 2,
+      "patientId": 2,
+      "patientName": "Roberto Sánchez",
+      "deviationType": "Pico de Carga en Talón",
+      "recordedValue": "1,150 N",
+      "threshold": ">950 N",
+      "severity": "critical",
+      "status": "pending",
+      "occurredAt": "2026-09-11T18:20:00"
+    },
+    {
+      "id": 3,
+      "patientId": 4,
+      "patientName": "Jorge Alarcón",
+      "deviationType": "Asimetría Bilateral Brusca",
+      "recordedValue": "22%",
+      "threshold": ">15%",
+      "severity": "warning",
+      "status": "resolved",
+      "occurredAt": "2026-09-10T11:00:00"
+    }
+  ],
+  "thresholds": [
+    {
+      "id": 1,
+      "patientId": 1,
+      "pelvicTilt": 19,
+      "asymmetry": 15,
+      "cadence": 102,
+      "impactPeak": 1.3
+    },
+    {
+      "id": 2,
+      "patientId": 2,
+      "pelvicTilt": 10,
+      "asymmetry": 12,
+      "cadence": 60,
+      "impactPeak": 1.2
+    },
+    {
+      "id": 3,
+      "patientId": 3,
+      "pelvicTilt": 12,
+      "asymmetry": 15,
+      "cadence": 80,
+      "impactPeak": 1.3
+    },
+    {
+      "id": 4,
+      "patientId": 4,
+      "pelvicTilt": 14,
+      "asymmetry": 15,
+      "cadence": 90,
+      "impactPeak": 1.5
+    }
+  ],
+  "prostheses": [
+    {
+      "id": 1,
+      "serialNumber": "PR-2026-TT-084",
+      "type": "Transtibial Carbono (Vacío Activo)",
+      "patientName": "Carlos Mendoza Arias",
+      "clinicName": "Rehab Lima Sur",
+      "accumulatedCycles": 342100,
+      "cycleLimit": 800000,
+      "lastService": "15/05/2026 (Encaje)",
+      "status": "optimal",
+      "batteryLevel": 94,
+      "sensorStatus": "online",
+      "kLevel": "K3",
+      "socketType": "Fibra de Carbono Termoformada (Vacío Activo)",
+      "kneeType": "N/A (Transtibial)",
+      "footType": "Pie Dinámico de Carbono"
+    },
+    {
+      "id": 2,
+      "serialNumber": "PR-2025-TF-004",
+      "type": "Transfemoral Hidráulica",
+      "patientName": "Hugo Paredes",
+      "clinicName": "Rehab Lima Sur",
+      "accumulatedCycles": 814200,
+      "cycleLimit": 800000,
+      "lastService": "10/01/2026 (Revisión)",
+      "status": "critical",
+      "batteryLevel": 52,
+      "sensorStatus": "online",
+      "kLevel": "K2",
+      "socketType": "Encaje Cuadrilateral con liner de silicona",
+      "kneeType": "Rodilla Monocéntrica Hidráulica",
+      "footType": "Pie de carbono multieje"
+    },
+    {
+      "id": 3,
+      "serialNumber": "PR-2026-TT-099",
+      "type": "Transtibial Ensamblada",
+      "patientName": "Disponible sin asignar",
+      "clinicName": "Taller Central",
+      "accumulatedCycles": 0,
+      "cycleLimit": 800000,
+      "lastService": "En ensamblaje",
+      "status": "storage",
+      "batteryLevel": 100,
+      "sensorStatus": "online",
+      "kLevel": "K2",
+      "socketType": "Socket modular termoplástico",
+      "kneeType": "N/A (Transtibial)",
+      "footType": "Pie Sach Estándar"
+    },
+    {
+      "id": 4,
+      "serialNumber": "PR-2026-TF-012",
+      "type": "Transfemoral Hidráulica",
+      "patientName": "Roberto Sánchez P.",
+      "clinicName": "Rehab Lima Sur",
+      "accumulatedCycles": 512400,
+      "cycleLimit": 800000,
+      "lastService": "20/03/2026 (Alineación)",
+      "status": "warning",
+      "batteryLevel": 68,
+      "sensorStatus": "online",
+      "kLevel": "K2",
+      "socketType": "Encaje Isquiático de Contacto Total",
+      "kneeType": "Rodilla Monocéntrica Hidráulica 3R80",
+      "footType": "Pie articulado SACH reforzado"
+    },
+    {
+      "id": 4,
+      "serialNumber": "PR-2026-TT-055",
+      "type": "Transtibial Bilateral Carbono",
+      "patientName": "María Vega Castro",
+      "clinicName": "Rehab Lima Sur",
+      "accumulatedCycles": 195000,
+      "cycleLimit": 800000,
+      "lastService": "02/06/2026 (Alineación)",
+      "status": "optimal",
+      "batteryLevel": 88,
+      "sensorStatus": "online",
+      "kLevel": "K3",
+      "socketType": "Socket de vacío activo Harmony",
+      "kneeType": "N/A (Transtibial)",
+      "footType": "Triton Carbon Foot"
+    },
+    {
+      "id": 5,
+      "serialNumber": "PR-2026-TT-091",
+      "type": "Transtibial Carbono",
+      "patientName": "Jorge Alarcón Ruiz",
+      "clinicName": "Rehab Lima Sur",
+      "accumulatedCycles": 280000,
+      "cycleLimit": 800000,
+      "lastService": "12/04/2026 (Ajuste)",
+      "status": "optimal",
+      "batteryLevel": 91,
+      "sensorStatus": "online",
+      "kLevel": "K4",
+      "socketType": "Liner con pin distal y lanzadera",
+      "kneeType": "N/A (Transtibial)",
+      "footType": "Vari-Flex XC con rotador"
+    }
+  ],
+  "mechanicalAlerts": [
+    {
+      "id": 1,
+      "prosthesisId": 3,
+      "serialNumber": "PR-2025-TF-004",
+      "cycles": 814200,
+      "cycleLimit": 800000,
+      "patientName": "Hugo Paredes",
+      "kLevel": "K2",
+      "component": "Amortiguador hidráulico de rodilla",
+      "description": "El amortiguador hidráulico de rodilla superó el ciclo de vida recomendado de 800,000 ciclos. Riesgo de pérdida de fluido.",
+      "severity": "critical",
+      "status": "pending",
+      "occurredAt": "Hoy 08:30 AM"
+    },
+    {
+      "id": 2,
+      "prosthesisId": 2,
+      "serialNumber": "PR-2026-TF-012",
+      "cycles": 512400,
+      "cycleLimit": 800000,
+      "patientName": "Roberto Sánchez P.",
+      "kLevel": "K2",
+      "component": "Elastómero de amortiguación",
+      "description": "Desgaste preventivo del elastómero superando el 60% de vida proyectada. Recambio urgente recomendado.",
+      "severity": "warning",
+      "status": "pending",
+      "occurredAt": "Ayer 16:45 PM"
+    }
+  ],
+  "maintenanceSchedules": [
+    {
+      "id": 1,
+      "serialNumber": "PR-2025-TF-004",
+      "patientName": "Hugo Paredes",
+      "scheduledDate": "07/10/2026",
+      "interventionType": "Recambio de amortiguador hidráulico",
+      "technicianName": "Ing. Roberto Valdivia",
+      "status": "scheduled",
+      "notes": "Recambio por superar 800k ciclos."
+    },
+    {
+      "id": 2,
+      "serialNumber": "PR-2026-TF-012",
+      "patientName": "Roberto Sánchez P.",
+      "scheduledDate": "08/10/2026",
+      "interventionType": "Inspección de elastómero y ajuste de pernos",
+      "technicianName": "Ing. Roberto Valdivia",
+      "status": "scheduled",
+      "notes": "Revisión preventiva de alineación dinámica."
+    },
+    {
+      "id": 3,
+      "serialNumber": "PR-2026-TT-084",
+      "patientName": "Carlos Mendoza Arias",
+      "scheduledDate": "09/10/2026",
+      "interventionType": "Chequeo de sensor telemétrico IMU",
+      "technicianName": "Ing. Roberto Valdivia",
+      "status": "scheduled",
+      "notes": "Verificación de batería y calibración de celda de carga."
+    },
+    {
+      "id": 4,
+      "serialNumber": "PR-2026-TT-055",
+      "patientName": "María Vega Castro",
+      "scheduledDate": "10/10/2026",
+      "interventionType": "Ajuste de vacío y válvula de suspensión",
+      "technicianName": "Ing. Roberto Valdivia",
+      "status": "scheduled",
+      "notes": "Revisión bimestral programada."
+    },
+    {
+      "id": 5,
+      "serialNumber": "PR-2026-TT-091",
+      "patientName": "Jorge Alarcón Ruiz",
+      "scheduledDate": "11/10/2026",
+      "interventionType": "Inspección cosmética y torque de pernos de titanio",
+      "technicianName": "Ing. Roberto Valdivia",
+      "status": "scheduled",
+      "notes": "Paciente K4 de alta actividad física."
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "sender": "user",
+      "senderName": "Carlos Mendoza",
+      "senderRole": "Paciente",
+      "text": "Hola Lic. Diego, completé la rutina de hoy. Noté una ligera presión en el borde lateral distal del encaje al minuto 20 de la caminata, pero sin dolor agudo. ¿Debo colocarme una capa extra de media o lo mantengo igual?",
+      "timestamp": "Ayer 18:20",
+      "isSystem": false
+    },
+    {
+      "id": 2,
+      "sender": "therapist",
+      "senderName": "Lic. Diego Salazar",
+      "senderRole": "Fisioterapeuta",
+      "text": "¡Hola Carlos! Revisé los datos de tu sesión telemétrica de ayer: tu simetría de apoyo estuvo en 94%, lo cual es un resultado excelente. Esa ligera presión es esperable mientras el muñón se tonifica. Mantén el mismo número de medias hoy y descansa 1 minuto extra entre series. Si mañana persiste enrojecimiento por más de 15 minutos al retirar el encaje, avísame para coordinar una alineación con el taller ortopédico.",
+      "timestamp": "Hoy 08:45",
+      "isSystem": false
+    },
+    {
+      "id": 3,
+      "sender": "system",
+      "senderName": "Sistema Prothia",
+      "senderRole": "Sistema",
+      "text": "El sistema compartió automáticamente tu sesión de hoy (3 de 4 ejercicios completados - 75%)",
+      "timestamp": "Hoy 09:30",
+      "isSystem": true
+    },
+    {
+      "id": 1791258606449,
+      "sender": "user",
+      "senderName": "Carlos Mendoza",
+      "senderRole": "Paciente",
+      "text": "Hoolaaaa",
+      "timestamp": "22:50",
+      "isSystem": false,
+      "status": "sent"
+    }
+  ],
+  "transmissions": [
+    {
+      "id": 1,
+      "patientId": 1,
+      "patientName": "Carlos Mendoza Arias",
+      "patientDni": "45892104",
+      "workshopName": "Ortopedia Avanzada S.A.C. (Ing. Roberto Valdivia)",
+      "sharedModules": [
+        "symmetry",
+        "impact_alerts",
+        "clinical_notes"
+      ],
+      "technicalNotes": "Paciente Carlos Mendoza presenta leve compensación con inclinación lateral hacia el lado sano a partir del minuto 18 de marcha. Se recomienda revisar el ángulo estático del pilón o eventual recalibración de la flexión del tobillo en el siguiente mantenimiento preventivo.",
+      "status": "confirmed",
+      "statusLabel": "Recibido y Confirmado por Taller",
+      "summary": "Informe de adaptación inicial y 300,000 ciclos acumulados.",
+      "createdAt": "12/09/2026"
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "reportCode": "EXP-CLIN-2026-084",
+      "issueDate": "12/09/2026",
+      "clinicName": "CENTRO DE REHABILITACIÓN FÍSICA LIMA SUR",
+      "clinicUnit": "Unidad de Biomecánica y Rehabilitación Protésica • RUC 20608945123",
+      "patientId": 1,
+      "patientName": "Carlos Mendoza Arias",
+      "dni": "45892104",
+      "age": 38,
+      "diagnosis": "Transtibial Derecho (K3)",
+      "prosthesisCode": "PR-2026-TT-084",
+      "evaluationPeriod": "Último Mes (12/08/2026 - 12/09/2026)",
+      "summary": "Durante el período evaluado de 30 días, el paciente registró un total de 24 sesiones de caminata telemétrica y completó el 88% de los ejercicios domiciliarios prescritos. La simetría de apoyo bilateral promedio se situó en 92.4%, representando una mejoría estadísticamente significativa de +10.4% frente a la evaluación basal de encaje inicial.",
+      "indicators": [
+        {
+          "name": "Cadencia Media de Paso",
+          "value": "98 pasos/min",
+          "normalRange": "90 - 105 pasos/min",
+          "evaluation": "Normal / Fluido",
+          "status": "normal"
+        },
+        {
+          "name": "Simetría Bilateral de Carga",
+          "value": "92.4%",
+          "normalRange": "> 90.0%",
+          "evaluation": "Excelente equilibrio",
+          "status": "normal"
+        },
+        {
+          "name": "Ángulo de Flexión de Rodilla",
+          "value": "58°",
+          "normalRange": "55° - 65°",
+          "evaluation": "Rango anatómico",
+          "status": "normal"
+        },
+        {
+          "name": "Inclinación Lateral de Tronco",
+          "value": "14° (Máx. en fatiga)",
+          "normalRange": "< 12°",
+          "evaluation": "En observación",
+          "status": "warning"
+        }
+      ],
+      "medicalRecommendation": "Continuar con la Fase 2 de fortalecimiento de abductores. Citar a control conjunto con protesista en 60 días para inspección de alineación estática.",
+      "therapistName": "Lic. Diego Salazar Mendoza",
+      "therapistRole": "Tecnólogo Médico - Fisioterapeuta",
+      "therapistRegistry": "CTMP 14820"
+    },
+    {
+      "id": 2,
+      "reportCode": "EXP-CLIN-2026-085",
+      "issueDate": "12/09/2026",
+      "clinicName": "CENTRO DE REHABILITACIÓN FÍSICA LIMA SUR",
+      "clinicUnit": "Unidad de Biomecánica y Rehabilitación Protésica • RUC 20608945123",
+      "patientId": 2,
+      "patientName": "Roberto Sánchez P.",
+      "dni": "40129845",
+      "age": 45,
+      "diagnosis": "Transfemoral Izquierdo (K2)",
+      "prosthesisCode": "PR-2026-TF-012",
+      "evaluationPeriod": "Último Mes (12/08/2026 - 12/09/2026)",
+      "summary": "Durante el período evaluado de 30 días, el paciente registró 18 sesiones telemétricas y 72% de adherencia. La simetría de apoyo bilateral se sitúa en 81.0%, requiriendo fortalecimiento de cadera contralateral y ajuste de alineación de rodilla hidráulica.",
+      "indicators": [
+        {
+          "name": "Cadencia Media de Paso",
+          "value": "84 pasos/min",
+          "normalRange": "90 - 105 pasos/min",
+          "evaluation": "En observación / Lento",
+          "status": "warning"
+        },
+        {
+          "name": "Simetría Bilateral de Carga",
+          "value": "81.0%",
+          "normalRange": "> 90.0%",
+          "evaluation": "Asimétrico / Compensatorio",
+          "status": "warning"
+        },
+        {
+          "name": "Ángulo de Flexión de Rodilla",
+          "value": "48°",
+          "normalRange": "55° - 65°",
+          "evaluation": "Rango limitado",
+          "status": "warning"
+        },
+        {
+          "name": "Inclinación Lateral de Tronco",
+          "value": "16° (Máx. en fatiga)",
+          "normalRange": "< 12°",
+          "evaluation": "Compensación severa",
+          "status": "warning"
+        }
+      ],
+      "medicalRecommendation": "Coordinar ajuste de amortiguación hidráulica con el taller ortopédico y priorizar sesiones de fortalecimiento glúteo medio.",
+      "therapistName": "Lic. Diego Salazar Mendoza",
+      "therapistRole": "Tecnólogo Médico - Fisioterapeuta",
+      "therapistRegistry": "CTMP 14820"
+    },
+    {
+      "id": 3,
+      "reportCode": "EXP-CLIN-2026-086",
+      "issueDate": "12/09/2026",
+      "clinicName": "CENTRO DE REHABILITACIÓN FÍSICA LIMA SUR",
+      "clinicUnit": "Unidad de Biomecánica y Rehabilitación Protésica • RUC 20608945123",
+      "patientId": 3,
+      "patientName": "María Vega Castro",
+      "dni": "10845921",
+      "age": 52,
+      "diagnosis": "Transtibial Bilateral (K3)",
+      "prosthesisCode": "PR-2026-TT-055",
+      "evaluationPeriod": "Último Mes (12/08/2026 - 12/09/2026)",
+      "summary": "Paciente con excelente adherencia domiciliaria (95%) y marcha fluida. La simetría bilateral de carga promedia 96.0%, superando el umbral clínico objetivo de bipedestación.",
+      "indicators": [
+        {
+          "name": "Cadencia Media de Paso",
+          "value": "94 pasos/min",
+          "normalRange": "90 - 105 pasos/min",
+          "evaluation": "Normal / Fluido",
+          "status": "normal"
+        },
+        {
+          "name": "Simetría Bilateral de Carga",
+          "value": "96.0%",
+          "normalRange": "> 90.0%",
+          "evaluation": "Excelente equilibrio",
+          "status": "normal"
+        },
+        {
+          "name": "Ángulo de Flexión de Rodilla",
+          "value": "60°",
+          "normalRange": "55° - 65°",
+          "evaluation": "Rango anatómico",
+          "status": "normal"
+        },
+        {
+          "name": "Inclinación Lateral de Tronco",
+          "value": "9°",
+          "normalRange": "< 12°",
+          "evaluation": "Estable / Controlado",
+          "status": "normal"
+        }
+      ],
+      "medicalRecommendation": "Mantener régimen de marcha y programar revisión de liners y suspensión de vacío en 90 días.",
+      "therapistName": "Lic. Diego Salazar Mendoza",
+      "therapistRole": "Tecnólogo Médico - Fisioterapeuta",
+      "therapistRegistry": "CTMP 14820"
+    },
+    {
+      "id": 4,
+      "reportCode": "EXP-CLIN-2026-087",
+      "issueDate": "12/09/2026",
+      "clinicName": "CENTRO DE REHABILITACIÓN FÍSICA LIMA SUR",
+      "clinicUnit": "Unidad de Biomecánica y Rehabilitación Protésica • RUC 20608945123",
+      "patientId": 4,
+      "patientName": "Jorge Alarcón Ruiz",
+      "dni": "72458912",
+      "age": 29,
+      "diagnosis": "Transtibial Izquierdo (K4)",
+      "prosthesisCode": "PR-2026-TT-091",
+      "evaluationPeriod": "Último Mes (12/08/2026 - 12/09/2026)",
+      "summary": "Paciente de alto impacto K4 con 91% de cumplimiento en rutina de acondicionamiento aeróbico. Patrón cinemático de marcha de alta eficiencia biomecánica.",
+      "indicators": [
+        {
+          "name": "Cadencia Media de Paso",
+          "value": "104 pasos/min",
+          "normalRange": "90 - 105 pasos/min",
+          "evaluation": "Dinámica / Alta cadencia",
+          "status": "normal"
+        },
+        {
+          "name": "Simetría Bilateral de Carga",
+          "value": "94.0%",
+          "normalRange": "> 90.0%",
+          "evaluation": "Excelente equilibrio",
+          "status": "normal"
+        },
+        {
+          "name": "Ángulo de Flexión de Rodilla",
+          "value": "62°",
+          "normalRange": "55° - 65°",
+          "evaluation": "Rango dinámico K4",
+          "status": "normal"
+        },
+        {
+          "name": "Inclinación Lateral de Tronco",
+          "value": "10°",
+          "normalRange": "< 12°",
+          "evaluation": "Estable",
+          "status": "normal"
+        }
+      ],
+      "medicalRecommendation": "Habilitar transición a actividades deportivas de impacto moderado y control de alineación semestral.",
+      "therapistName": "Lic. Diego Salazar Mendoza",
+      "therapistRole": "Tecnólogo Médico - Fisioterapeuta",
+      "therapistRegistry": "CTMP 14820"
+    }
+  ],
+  "clinicSubscription": {
+    "planName": "Plan Centro de Rehabilitación",
+    "status": "Activo • Vigente",
+    "planType": "Plan Clínico Anual",
+    "annualFee": 1428,
+    "monthlyEquivalent": 119,
+    "startDate": "12 de Septiembre de 2026",
+    "renewalDate": "12 de Septiembre de 2027",
+    "usedQuota": 24,
+    "totalQuota": 50,
+    "paymentMethod": {
+      "brand": "VISA",
+      "cardTitle": "Tarjeta Corporativa terminada en 4281",
+      "expiry": "08/29",
+      "autoRenew": true
+    }
+  },
+  "invoices": [
+    {
+      "id": 1,
+      "invoiceNumber": "F001-000842",
+      "issueDate": "12/09/2026",
+      "concept": "Suscripción Anual Plataforma Prothia (50 Pacientes)",
+      "amount": 1428,
+      "currency": "$",
+      "status": "paid",
+      "statusLabel": "Pagado",
+      "downloadUrl": "/invoices/F001-000842.pdf"
+    }
+  ]
+}
