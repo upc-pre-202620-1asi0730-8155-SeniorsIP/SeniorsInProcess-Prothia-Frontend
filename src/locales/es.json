@@ -1,0 +1,359 @@
+{
+  "page-not-found": {
+    "title": "Página no encontrada",
+    "content": "La ruta {unavailable-route} no está disponible.",
+    "go-home": "Ir al Inicio"
+  },
+  "errors": {
+    "occurred": "Ocurrieron errores"
+  },
+  "shell": {
+    "brand-tagline": "PORTAL CLÍNICO",
+    "main-navigation": "Navegación principal",
+    "open-menu": "Abrir menú",
+    "register-patient": "Registrar Paciente",
+    "sign-out": "Salir",
+    "subscription-summary": "Suscripción {plan} • {active} de {total} pacientes en seguimiento"
+  },
+  "dashboard": {
+    "stats": {
+      "monitored": "Pacientes en monitoreo",
+      "monitored-caption": "100% con telemetría activa",
+      "adherence": "Adherencia domiciliaria global",
+      "adherence-caption": "Meta clínica superada (>80%)",
+      "alerts": "Alertas posturales pendientes",
+      "alerts-suffix": "Críticas",
+      "alerts-caption": "Requieren revisión de terapeuta",
+      "symmetry": "Marcha simétrica (>90%)",
+      "symmetry-suffix": "pacientes",
+      "symmetry-caption": "66.7% de la cohorte activa"
+    },
+    "alerts": {
+      "title": "Alertas Clínicas Recientes",
+      "subtitle": "Eventos de compensación biomecánica detectados fuera de la clínica",
+      "view-all": "Ver todas las alertas ({count})",
+      "view-record": "Ver Ficha",
+      "inspect": "Inspeccionar Telemetría"
+    },
+    "patients": {
+      "title": "Directorio de Pacientes Recientes",
+      "subtitle": "Evolución biomecánica y cumplimiento de plan vigente",
+      "view-all": "Ver todos los pacientes ({count})",
+      "col-patient": "Paciente",
+      "col-amputation": "Nivel amputación",
+      "col-k-level": "K-Level",
+      "col-adherence": "Adherencia mes",
+      "col-symmetry": "Simetría actual",
+      "col-status": "Estado",
+      "col-action": "Acción",
+      "view-record": "Ver Expediente"
+    },
+    "status": {
+      "alert": "Alerta activa",
+      "critical": "Crítico",
+      "stable": "Estable"
+    }
+  },
+  "option": {
+    "dashboard": "Dashboard General",
+    "patients": "Pacientes Amputados",
+    "prescriptions": "Prescripción de Ejercicios",
+    "alerts": "Alertas Clínicas",
+    "workshops": "Talleres Ortopédicos",
+    "reports": "Reportes & Analítica",
+    "subscription": "Suscripción Clínica"
+  },
+  "patients": {
+    "header": {
+      "title": "Directorio de Pacientes en Rehabilitación",
+      "subtitle": "{count} pacientes activos registrados • Consulta de Ficha"
+    },
+    "new": "Nuevo Paciente",
+    "search-placeholder": "Buscar por nombre, DNI o ID de prótesis...",
+    "filters": {
+      "all-levels": "Todos los niveles de amputación",
+      "all-statuses": "Todos los estados"
+    },
+    "columns": {
+      "patient": "Paciente & Contacto",
+      "amputation": "Amputación",
+      "k-level": "K-Level",
+      "prosthesis": "Prótesis vinculada",
+      "adherence": "Adherencia",
+      "symmetry": "Simetría",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "status": {
+      "alert": "Alerta activa",
+      "critical": "Crítico",
+      "stable": "Estable"
+    },
+    "years": "{age} años",
+    "record": "Ficha",
+    "telemetry": "Telemetría",
+    "empty": "No se encontraron pacientes con esos filtros."
+  },
+  "patient-form": {
+    "title": "Registrar Paciente",
+    "full-name": "Nombre completo",
+    "dni": "DNI",
+    "age": "Edad",
+    "amputation": "Nivel de amputación",
+    "k-level": "K-Level",
+    "prosthesis-code": "ID de prótesis vinculada",
+    "save": "Registrar",
+    "cancel": "Cancelar",
+    "saved": "Paciente registrado"
+  },
+  "prescription": {
+    "header": {
+      "title": "Prescripción y Gestión de Planes",
+      "subtitle": "Diseña y asigna rutinas terapéuticas personalizadas para rehabilitación domiciliaria"
+    },
+    "patient-to-prescribe": "Paciente a Prescribir:",
+    "current-plan": "Plan vigente:",
+    "current-plan-value": "Fase {phase} ({adherence}% adherencia)",
+    "no-plan": "Sin plan vigente",
+    "library": "Biblioteca de Ejercicios",
+    "available": "{count} disponibles",
+    "search-exercise": "Buscar ejercicio...",
+    "add": "+ Agregar",
+    "plan-title": "Plan a Prescribir: Fase {phase} ({name})",
+    "plan-meta": "Duración: {weeks} semanas • Frecuencia: {days} días a la semana",
+    "exercise-count": "{count} Ejercicios",
+    "sets": "Series",
+    "reps": "Repeticiones",
+    "rest": "Descanso (seg)",
+    "remove": "Eliminar",
+    "empty-plan": "Agrega ejercicios desde la biblioteca para armar el plan.",
+    "notify": "Se notificará de inmediato al portal del paciente.",
+    "save": "Guardar y Asignar al Paciente",
+    "saved": "Plan asignado",
+    "saved-detail": "El plan de {patient} fue guardado y notificado.",
+    "incomplete": "Completa series, repeticiones y descanso de cada ejercicio."
+  },
+  "alerts": {
+    "header": {
+      "title": "Centro de Alertas & Umbrales Biomecánicos",
+      "subtitle": "Supervisión de patrones y calibración de sensibilidad"
+    },
+    "history": {
+      "title": "Historial de Eventos Críticos",
+      "subtitle": "Eventos registrados automáticamente por el motor de procesamiento biomecánico",
+      "pending-count": "{count} pendientes de resolución",
+      "columns": {
+        "date": "Fecha y Hora",
+        "patient": "Paciente",
+        "deviation": "Tipo de Desviación",
+        "value": "Valor Registrado vs. Umbral",
+        "severity": "Severidad",
+        "status": "Estado",
+        "action": "Acción"
+      },
+      "threshold": "Umbral: {threshold}",
+      "severity": {
+        "warning": "Advertencia",
+        "critical": "Crítico"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "resolved": "Resuelto"
+      },
+      "resolve": "Resolver",
+      "attended": "Atendido",
+      "resolved-toast": "Alerta resuelta",
+      "empty": "No hay eventos registrados."
+    },
+    "calibration": {
+      "title": "Calibración de Umbrales de Alerta por Paciente",
+      "subtitle": "Ajusta la sensibilidad de disparo telemétrico para adaptarla a la evolución funcional del paciente",
+      "patient": "Paciente:",
+      "save": "Guardar Configuración de Umbrales",
+      "saved": "Umbrales guardados"
+    },
+    "thresholds": {
+      "pelvicTilt": {
+        "label": "Inclinación Pélvica Lateral Máxima",
+        "description": "Dispara alerta si el tronco se desvía más de {value} hacia cualquier costado durante la fase de apoyo.",
+        "unit": "°"
+      },
+      "asymmetry": {
+        "label": "Tolerancia de Asimetría Bilateral",
+        "description": "Dispara alerta si la diferencia de carga entre la pierna sana y la prótesis supera el {value}.",
+        "unit": "%"
+      },
+      "cadence": {
+        "label": "Cadencia Mínima Esperada",
+        "description": "Avisa si la velocidad de paso cae por debajo del umbral sugerido para {kLevel} comunitario.",
+        "unit": " p/min"
+      },
+      "impactPeak": {
+        "label": "Pico de Carga Máximo de Impacto",
+        "description": "Protege el muñón de sobrecargas de compresión destructivas.",
+        "unit": " × Peso Corporal"
+      }
+    }
+  },
+  "role-selection": {
+    "badge": "Ecosistema Integral de Salud & Biomecánica",
+    "title": "Bienvenido a Prothia",
+    "subtitle": "Selecciona tu perfil de usuario para ingresar al entorno especializado diseñado para tus necesidades:",
+    "system-tag": "Plataforma IoT de Rehabilitación",
+    "switch-role": "Cambiar Rol",
+    "roles": {
+      "patient": {
+        "tag": "Paciente",
+        "title": "Paciente Amputado",
+        "institution": "Seguimiento Domiciliario Personal",
+        "desc": "Supervisa tus horas diarias de uso, cumple tus ejercicios de rehabilitación y mantén contacto directo con tu terapeuta y taller.",
+        "f1": "Telemetría de pasos y estabilidad en tiempo real",
+        "f2": "Cumplimiento y registro de rutinas domiciliarias",
+        "f3": "Alertas tempranas de sobrecarga y estado de prótesis",
+        "cta": "Ingresar como Paciente"
+      },
+      "technician": {
+        "tag": "Taller Ortopédico",
+        "title": "Técnico Ortoprotésico",
+        "institution": "Ortopedia Técnica Avanzada S.A.C.",
+        "desc": "Monitorea la flota de prótesis activas, atiende alertas críticas de desgaste de ciclo de vida y programa mantenimientos preventivos.",
+        "f1": "Dashboard de flota con telemetría IoT al 100%",
+        "f2": "Alertas de fatiga mecánica y superación de ciclos",
+        "f3": "Trazabilidad de componentes y fichas técnicas",
+        "cta": "Ingresar como Técnico"
+      },
+      "therapist": {
+        "tag": "Clínica de Rehabilitación",
+        "title": "Terapeuta de Clínica",
+        "institution": "Centro de Rehabilitación Física Lima Sur",
+        "desc": "Gestiona tu cohorte de pacientes amputados, prescribe planes personalizados de ejercicios domiciliarios y calibra umbrales biomecánicos.",
+        "f1": "Directorio clínico de pacientes y expedientes",
+        "f2": "Prescripción y asignación de rutinas terapéuticas",
+        "f3": "Supervisión de simetría de marcha y umbrales",
+        "cta": "Ingresar como Terapeuta"
+      }
+    }
+  },
+  "technician": {
+    "brand-tagline": "Taller Ortopédico",
+    "menu": {
+      "fleet-dashboard": "Dashboard de Flota",
+      "fleet": "Flota de Prótesis",
+      "maintenance": "Mantenimiento Preventivo",
+      "fatigue-alerts": "Alertas de Fatiga",
+      "clinics": "Fichas de Clínicas",
+      "license": "Licencia de Software"
+    },
+    "headers": {
+      "dashboard-title": "Ortopedia Técnica Avanzada S.A.C.",
+      "dashboard-subtitle": "Licencia de Taller Activa • 42 prótesis en telemetría de vida útil",
+      "fleet-title": "Inventario y Flota de Prótesis",
+      "fleet-subtitle": "42 dispositivos activos • Registro técnico y telemetría de vida útil",
+      "maintenance-title": "Mantenimiento Preventivo",
+      "maintenance-subtitle": "Programación de servicios técnicos anticipados para evitar fallas mecánicas",
+      "fatigue-title": "Centro de Alertas de Fatiga Mecánica",
+      "fatigue-subtitle": "Avisos telemétricos generados cuando una prótesis alcanza límites de desgaste o impacto",
+      "clinics-title": "Fichas Clínicas Compartidas",
+      "clinics-subtitle": "Informes autorizados por fisioterapeutas para coordinar calibraciones mecánicas",
+      "license-title": "Gestión de Licencia Técnica de Taller",
+      "license-subtitle": "Monitoreo telemétrico de flota protésica y facturación de licenciamiento"
+    },
+    "actions": {
+      "register-link": "+ Registrar / Vincular Prótesis",
+      "register": "+ Registrar Prótesis",
+      "schedule-maintenance": "+ Programar Mantenimiento"
+    },
+    "user-role": "Director Técnico • CPO Cat II",
+    "topbar": {
+      "register-action": "Registrar / Vincular Prótesis"
+    },
+    "stats": {
+      "monitored-title": "Dispositivos en Monitoreo",
+      "monitored-suffix": "/ {capacity} capacidad",
+      "monitored-caption": "{count} pacientes vinculados",
+      "maintenance-title": "Mantenimientos Programados",
+      "maintenance-suffix": "esta semana",
+      "maintenance-caption": "Revisiones preventivas",
+      "fatigue-title": "Alertas de Fatiga Mecánica",
+      "fatigue-suffix": ">800k ciclos",
+      "fatigue-caption": "Recambio de elastómero urgente",
+      "hours-title": "Horas Totales Acumuladas",
+      "hours-suffix": "horas",
+      "hours-caption": "Telemetría IoT al 100%"
+    },
+    "alerts": {
+      "section-title": "Alertas de Desgaste Mecánico",
+      "section-subtitle": "Prótesis que han alcanzado el umbral preventivo de ciclos de carga",
+      "view-all": "Ver todas las alertas ({count})",
+      "schedule-button": "Programar Revisión Inmediata"
+    },
+    "fleet": {
+      "section-title": "Flota de Dispositivos Activos",
+      "section-subtitle": "Trazabilidad de componentes, ciclos y fechas de servicio",
+      "view-all": "Ver inventario completo ({count})",
+      "col-serial": "N° Serie",
+      "col-type": "Tipo & Componente",
+      "col-patient": "Paciente Asociado",
+      "col-clinic": "Clínica Vinculada",
+      "col-cycles": "Ciclos Acumulados",
+      "col-last-service": "Último Servicio",
+      "col-action": "Acción",
+      "action-sheet": "Ficha Técnica"
+    },
+    "modals": {
+      "register-title": "Registrar / Vincular Prótesis",
+      "schedule-title": "Programar Revisión Inmediata",
+      "detail-title": "Ficha Técnica de Prótesis"
+    }
+  },
+  "patient-portal": {
+    "brand-tagline": "PORTAL PACIENTE",
+    "role-pill": "Portal Paciente",
+    "sensors-connected": "Sensores: Conectados ({bat}% Bat)",
+    "user-role": "Prótesis Transtibial",
+    "signout-tooltip": "Salir al Selector de Rol",
+    "nav": {
+      "my-day": "Mi Día",
+      "live-telemetry": "Telemetría en Vivo",
+      "gait-history": "Historial y Marcha",
+      "exercises": "Mis Ejercicios",
+      "messages": "Mensajes"
+    },
+    "my-day": {
+      "greeting": "Hola, {name}",
+      "subtitle": "Hoy es sábado 12 de septiembre de 2026 • Tu progreso semanal es del 88%",
+      "action-walk": "Iniciar Caminata Asistida",
+      "action-plan": "Ver Plan de Hoy",
+      "steps-title": "PASOS HOY",
+      "steps-target": "Meta: 5,000",
+      "symmetry-title": "SIMETRÍA DE APOYO",
+      "cadence-title": "CADENCIA PROMEDIO",
+      "routine-title": "RUTINA EN CASA",
+      "therapist-title": "Fisioterapeuta Tratante",
+      "device-title": "Dispositivo Activo",
+      "adherence-title": "Adherencia Semanal",
+      "adherence-week": "Semana 34",
+      "adherence-avg": "Promedio semanal: {percent}%",
+      "view-history": "Ver Historial Completo →",
+      "mark-done": "Marcar como hecho",
+      "marked-done": "✓ Realizado con éxito"
+    },
+    "live-telemetry": {
+      "session-active": "SESIÓN EN CURSO",
+      "pause": "Pausar",
+      "resume": "Reanudar",
+      "finish": "Finalizar Sesión",
+      "mode-normal": "Modo Normal",
+      "mode-anomaly": "Simular Inclinación Anómala",
+      "cadence": "Cadencia Instantánea",
+      "distribution": "Distribución de Apoyo",
+      "knee-angle": "Ángulo de Flexión de Rodilla",
+      "impact-load": "Pico de Carga de Impacto"
+    },
+    "menu": {
+      "dashboard": "Mi Panel",
+      "prosthesis": "Mi Prótesis & Telemetría",
+      "exercises": "Mis Ejercicios"
+    }
+  }
+}
