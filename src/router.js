@@ -19,7 +19,7 @@ const about = () => import('./shared/presentation/views/about.vue');
 const pageNotFound = () => import('./shared/presentation/views/page-not-found.vue');
 
 const routes = [
-    // 1. Pantalla Principal de Selección de Rol (Root /)
+    // 1. Main Role Selection Screen (Root /)
     {
         path: '/',
         name: 'role-selector',
@@ -31,21 +31,21 @@ const routes = [
         redirect: '/'
     },
 
-    // 2. Portal del Técnico Ortoprotésico (Taller Ortopédico)
+    // 2. Orthoprosthetic Technician Portal (Orthopedic Workshop)
     {
         path: '/technician',
         component: WorkshopLayout,
         children: workshopRoutes
     },
 
-    // 3. Portal del Paciente Amputado
+    // 3. Amputee Patient Portal
     {
         path: '/patient',
         component: PatientLayout,
         children: patientPortalRoutes
     },
 
-    // 4. Portal del Terapeuta Clínico (Rutas y Layout Originales Intactos)
+    // 4. Clinical Therapist Portal (Original Paths and Layout Intact)
     {
         path: '/',
         component: Layout,
@@ -62,7 +62,7 @@ const routes = [
         ]
     },
 
-    // 5. Página no encontrada
+    // 5. Page not found
     { path: '/:pathMatch(.*)*', name: 'not-found', component: pageNotFound, meta: { title: 'Page Not Found' } }
 ];
 
