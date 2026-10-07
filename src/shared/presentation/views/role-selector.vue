@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import useRoleStore from "../../../../../../../Desktop/SeniorsInProcess-Prothia-Frontendd/src/shared/application/role.store.js";
+import useRoleStore from "../../application/role.store.js";
 import LanguageSwitcher from "../components/language-switcher.vue";
 
 const router = useRouter();
@@ -25,7 +25,7 @@ function chooseRole(roleKey) {
     <!-- Navbar / Header -->
     <header class="role-portal__header">
       <div class="brand">
-        <span class="brand__logo" aria-hidden="true" />
+        <img class="brand__logo" src="/prothia-logo.png" alt="" aria-hidden="true" />
         <div>
           <span class="brand__name">PROTHIA</span>
           <span class="brand__tagline">{{ t('role-selection.system-tag') }}</span>
@@ -67,11 +67,11 @@ function chooseRole(roleKey) {
 
           <div class="role-card__cta">
             <pv-button
-              class="btn-role btn-role--patient"
-              :label="t('role-selection.roles.patient.cta')"
-              icon="pi pi-arrow-right"
-              iconPos="right"
-              fluid
+                class="btn-role btn-role--patient"
+                :label="t('role-selection.roles.patient.cta')"
+                icon="pi pi-arrow-right"
+                iconPos="right"
+                fluid
             />
           </div>
         </article>
@@ -97,11 +97,11 @@ function chooseRole(roleKey) {
 
           <div class="role-card__cta">
             <pv-button
-              class="btn-role btn-role--technician"
-              :label="t('role-selection.roles.technician.cta')"
-              icon="pi pi-arrow-right"
-              iconPos="right"
-              fluid
+                class="btn-role btn-role--technician"
+                :label="t('role-selection.roles.technician.cta')"
+                icon="pi pi-arrow-right"
+                iconPos="right"
+                fluid
             />
           </div>
         </article>
@@ -127,11 +127,11 @@ function chooseRole(roleKey) {
 
           <div class="role-card__cta">
             <pv-button
-              class="btn-role btn-role--therapist"
-              :label="t('role-selection.roles.therapist.cta')"
-              icon="pi pi-arrow-right"
-              iconPos="right"
-              fluid
+                class="btn-role btn-role--therapist"
+                :label="t('role-selection.roles.therapist.cta')"
+                icon="pi pi-arrow-right"
+                iconPos="right"
+                fluid
             />
           </div>
         </article>
@@ -174,7 +174,8 @@ function chooseRole(roleKey) {
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  background: var(--pt-teal);
+  background: #ffffff;
+  object-fit: contain;
 }
 
 .brand__name {

@@ -4,7 +4,6 @@ import WorkshopLayout from "./workshop/presentation/components/workshop-layout.v
 import PatientLayout from "./patient-portal/presentation/components/patient-layout.vue";
 import Home from "./shared/presentation/views/home.vue";
 import RoleSelector from "./shared/presentation/views/role-selector.vue";
-import publishingRoutes from "./publishing/presentation/publishing-routes.js";
 import patientRoutes from "./patients/presentation/patient-routes.js";
 import prescriptionRoutes from "./prescription/presentation/prescription-routes.js";
 import monitoringRoutes from "./monitoring/presentation/monitoring-routes.js";
