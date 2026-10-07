@@ -18,7 +18,7 @@ export class Patient {
      * @param {'alert'|'critical'|'stable'} [params.status='stable'] - Clinical status.
      */
     constructor({ id = null, fullName = '', dni = '', age = 0, amputation = '', kLevel = '',
-                  prosthesisCode = '', adherence = 0, symmetry = 0, status = 'stable' }) {
+                    prosthesisCode = '', adherence = 0, symmetry = 0, status = 'stable' }) {
         this.id = id;
         this.fullName = fullName;
         this.dni = dni;
