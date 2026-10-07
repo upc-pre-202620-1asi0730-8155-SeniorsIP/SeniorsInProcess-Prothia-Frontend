@@ -2,7 +2,7 @@ import axios from "axios";
 
 // import {iamInterceptor} from "../../iam/infrastructure/iam.interceptor.js";
 
-const platformApi = import.meta.env.VITE_LEARNING_PLATFORM_API_URL;
+const defaultPlatformApi = import.meta.env.VITE_PROTHIA_PLATFORM_API_URL || import.meta.env.VITE_LEARNING_PLATFORM_API_URL;
 
 /**
  * Shared infrastructure base class that configures the HTTP client.
@@ -18,11 +18,13 @@ export class BaseApi {
     #http;
 
     /**
-     * Initializes the Axios HTTP client with the base URL from environment variables
+     * Initializes the Axios HTTP client with the specified base URL or the default platform API URL.
+     *
+     * @param {string} [baseUrl] - Custom base URL for the HTTP client instance.
      */
-    constructor() {
+    constructor(baseUrl = defaultPlatformApi) {
         this.#http = axios.create({
-            baseURL: platformApi,
+            baseURL: baseUrl,
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'

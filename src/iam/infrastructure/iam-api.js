@@ -1,8 +1,9 @@
 import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
 import {BaseApi} from "../../shared/infrastructure/base-api.js";
-const signInEndpointPath = import.meta.env.VITE_SIGNIN_ENDPOINT_PATH;
-const signUpEndpointPath = import.meta.env.VITE_SIGNUP_ENDPOINT_PATH;
-const usersEndpointPath   = import.meta.env.VITE_USERS_ENDPOINT_PATH;
+const iamApiUrl            = import.meta.env.VITE_IAM_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_3 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
+const signInEndpointPath   = import.meta.env.VITE_SIGNIN_ENDPOINT_PATH || "/authentication/sign-in";
+const signUpEndpointPath   = import.meta.env.VITE_SIGNUP_ENDPOINT_PATH || "/authentication/sign-up";
+const usersEndpointPath     = import.meta.env.VITE_USERS_ENDPOINT_PATH || "/users";
 
 /**
  * Infrastructure gateway for IAM bounded-context endpoints.
@@ -17,7 +18,7 @@ export class IamApi extends BaseApi {
 
     /** Creates endpoint clients for sign-in, sign-up, and user listing. */
     constructor() {
-        super();
+        super(iamApiUrl);
         this.#signInEndpoint = new BaseEndpoint(this, signInEndpointPath);
         this.#signUpEndpoint = new BaseEndpoint(this, signUpEndpointPath);
         this.#usersEndpoint = new BaseEndpoint(this, usersEndpointPath);
