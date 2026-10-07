@@ -1,9 +1,10 @@
 ﻿import { BaseApi } from "../../shared/infrastructure/base-api.js";
 import { BaseEndpoint } from "../../shared/infrastructure/base-endpoint.js";
 
-const prosthesesEndpointPath = import.meta.env.VITE_PROSTHESES_ENDPOINT_PATH || "/prostheses";
+const workshopApiUrl               = import.meta.env.VITE_WORKSHOP_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_1 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
+const prosthesesEndpointPath       = import.meta.env.VITE_PROSTHESES_ENDPOINT_PATH || "/prostheses";
 const mechanicalAlertsEndpointPath = import.meta.env.VITE_MECHANICAL_ALERTS_ENDPOINT_PATH || "/mechanicalAlerts";
-const maintenancesEndpointPath = import.meta.env.VITE_MAINTENANCES_ENDPOINT_PATH || "/maintenanceSchedules";
+const maintenancesEndpointPath     = import.meta.env.VITE_MAINTENANCES_ENDPOINT_PATH || "/maintenanceSchedules";
 
 /**
  * Infrastructure gateway for Workshop / Profiles & Asset bounded-context endpoints.
@@ -20,7 +21,7 @@ export class WorkshopApi extends BaseApi {
     #maintenancesEndpoint;
 
     constructor() {
-        super();
+        super(workshopApiUrl);
         this.#prosthesesEndpoint = new BaseEndpoint(this, prosthesesEndpointPath);
         this.#mechanicalAlertsEndpoint = new BaseEndpoint(this, mechanicalAlertsEndpointPath);
         this.#maintenancesEndpoint = new BaseEndpoint(this, maintenancesEndpointPath);

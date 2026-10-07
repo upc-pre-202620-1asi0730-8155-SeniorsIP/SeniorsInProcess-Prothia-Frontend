@@ -1,8 +1,9 @@
 import {BaseApi} from "../../shared/infrastructure/base-api.js";
 import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
 
-const exercisesEndpointPath     = import.meta.env.VITE_EXERCISES_ENDPOINT_PATH;
-const prescriptionsEndpointPath = import.meta.env.VITE_PRESCRIPTIONS_ENDPOINT_PATH;
+const clinicalApiUrl            = import.meta.env.VITE_CLINICAL_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
+const exercisesEndpointPath     = import.meta.env.VITE_EXERCISES_ENDPOINT_PATH || "/exercises";
+const prescriptionsEndpointPath = import.meta.env.VITE_PRESCRIPTIONS_ENDPOINT_PATH || "/prescriptions";
 
 /**
  * Infrastructure gateway for Prescription bounded-context endpoints.
@@ -18,7 +19,7 @@ export class PrescriptionApi extends BaseApi {
 
     /** Creates endpoint clients for exercises and prescriptions. */
     constructor() {
-        super();
+        super(clinicalApiUrl);
         this.#exercisesEndpoint = new BaseEndpoint(this, exercisesEndpointPath);
         this.#prescriptionsEndpoint = new BaseEndpoint(this, prescriptionsEndpointPath);
     }

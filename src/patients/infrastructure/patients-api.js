@@ -1,7 +1,8 @@
 import {BaseApi} from "../../shared/infrastructure/base-api.js";
 import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
 
-const patientsEndpointPath = import.meta.env.VITE_PATIENTS_ENDPOINT_PATH;
+const clinicalApiUrl     = import.meta.env.VITE_CLINICAL_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
+const patientsEndpointPath = import.meta.env.VITE_PATIENTS_ENDPOINT_PATH || "/patients";
 
 /**
  * Infrastructure gateway for Patients bounded-context endpoints.
@@ -18,7 +19,7 @@ export class PatientsApi extends BaseApi {
 
     /** Creates the endpoint client for patients. */
     constructor() {
-        super();
+        super(clinicalApiUrl);
         this.#patientsEndpoint = new BaseEndpoint(this, patientsEndpointPath);
     }
 

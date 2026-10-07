@@ -1,8 +1,9 @@
 import {BaseApi} from "../../shared/infrastructure/base-api.js";
 import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
 
-const alertsEndpointPath     = import.meta.env.VITE_ALERTS_ENDPOINT_PATH;
-const thresholdsEndpointPath = import.meta.env.VITE_THRESHOLDS_ENDPOINT_PATH;
+const monitoringApiUrl       = import.meta.env.VITE_MONITORING_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_2 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
+const alertsEndpointPath     = import.meta.env.VITE_ALERTS_ENDPOINT_PATH || "/alerts";
+const thresholdsEndpointPath = import.meta.env.VITE_THRESHOLDS_ENDPOINT_PATH || "/thresholds";
 
 /**
  * Infrastructure gateway for Monitoring bounded-context endpoints.
@@ -18,7 +19,7 @@ export class MonitoringApi extends BaseApi {
 
     /** Creates endpoint clients for alerts and thresholds. */
     constructor() {
-        super();
+        super(monitoringApiUrl);
         this.#alertsEndpoint = new BaseEndpoint(this, alertsEndpointPath);
         this.#thresholdsEndpoint = new BaseEndpoint(this, thresholdsEndpointPath);
     }

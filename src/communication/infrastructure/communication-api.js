@@ -1,6 +1,7 @@
 import { BaseApi } from "../../shared/infrastructure/base-api.js";
 import { BaseEndpoint } from "../../shared/infrastructure/base-endpoint.js";
 
+const iamApiUrl = import.meta.env.VITE_IAM_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_3 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
 const messagesEndpointPath = import.meta.env.VITE_MESSAGES_ENDPOINT_PATH || "/messages";
 const transmissionsEndpointPath = "/transmissions";
 
@@ -27,7 +28,7 @@ export class CommunicationApi extends BaseApi {
      * Initializes the CommunicationApi client with its dedicated endpoints.
      */
     constructor() {
-        super();
+        super(iamApiUrl);
         this.#messagesEndpoint = new BaseEndpoint(this, messagesEndpointPath);
         this.#transmissionsEndpoint = new BaseEndpoint(this, transmissionsEndpointPath);
     }
