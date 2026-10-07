@@ -11,13 +11,13 @@ const props = defineProps({
 });
 
 const initials = computed(() =>
-  props.name
-    .replace(/^(Lic|Dr|Dra|Mg|Ing)\.?\s+/i, '')
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map(word => word[0].toUpperCase())
-    .join('')
+    props.name
+        .replace(/^(Lic|Dr|Dra|Mg|Ing)\.?\s+/i, '')
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(word => word[0].toUpperCase())
+        .join('')
 );
 </script>
 

@@ -19,17 +19,17 @@ export class GaitSession {
      * @param {string} [params.impact='620 N'] - Average heel strike impact force.
      */
     constructor({
-        id = null,
-        datetime = '',
-        duration = '',
-        steps = 0,
-        cadence = '',
-        symmetry = '',
-        symmetryType = 'green',
-        alerts = '0 incidentes',
-        alertType = 'green',
-        impact = '620 N'
-    } = {}) {
+                    id = null,
+                    datetime = '',
+                    duration = '',
+                    steps = 0,
+                    cadence = '',
+                    symmetry = '',
+                    symmetryType = 'green',
+                    alerts = '0 incidentes',
+                    alertType = 'green',
+                    impact = '620 N'
+                } = {}) {
         this.id = id;
         this.datetime = datetime;
         this.duration = duration;

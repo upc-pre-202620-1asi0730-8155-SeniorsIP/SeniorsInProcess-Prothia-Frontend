@@ -58,20 +58,20 @@ const filteredPatients = computed(() => {
       <div class="table-wrap">
         <table class="table">
           <thead>
-            <tr>
-              <th>{{ t('patients.columns.patient') }}</th>
-              <th>{{ t('patients.columns.amputation') }}</th>
-              <th>{{ t('patients.columns.k-level') }}</th>
-              <th>{{ t('patients.columns.prosthesis') }}</th>
-              <th>{{ t('patients.columns.adherence') }}</th>
-              <th>{{ t('patients.columns.symmetry') }}</th>
-              <th>{{ t('patients.columns.status') }}</th>
-              <th class="right">{{ t('patients.columns.actions') }}</th>
-            </tr>
+          <tr>
+            <th>{{ t('patients.columns.patient') }}</th>
+            <th>{{ t('patients.columns.amputation') }}</th>
+            <th>{{ t('patients.columns.k-level') }}</th>
+            <th>{{ t('patients.columns.prosthesis') }}</th>
+            <th>{{ t('patients.columns.adherence') }}</th>
+            <th>{{ t('patients.columns.symmetry') }}</th>
+            <th>{{ t('patients.columns.status') }}</th>
+            <th class="right">{{ t('patients.columns.actions') }}</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="patient in filteredPatients" :key="patient.id">
-              <td>
+          <tr v-for="patient in filteredPatients" :key="patient.id">
+            <td>
                 <span class="person">
                   <avatar-initials :name="patient.fullName" :tone="avatarTone(patient)" :size="40"/>
                   <span>
@@ -79,23 +79,23 @@ const filteredPatients = computed(() => {
                     <span class="person__meta">DNI {{ patient.dni }} • {{ t('patients.years', { age: patient.age }) }}</span>
                   </span>
                 </span>
-              </td>
-              <td class="amputation">{{ patient.amputation }}</td>
-              <td><span class="klevel">{{ patient.kLevel }}</span></td>
-              <td class="mono">{{ patient.prosthesisCode }}</td>
-              <td><strong>{{ patient.adherence }}%</strong></td>
-              <td :class="patient.symmetry >= 90 ? 'good' : 'neutral'"><strong>{{ patient.symmetry }}%</strong></td>
-              <td><status-badge :tone="statusTone[patient.status]">{{ t(`patients.status.${patient.status}`) }}</status-badge></td>
-              <td class="right">
+            </td>
+            <td class="amputation">{{ patient.amputation }}</td>
+            <td><span class="klevel">{{ patient.kLevel }}</span></td>
+            <td class="mono">{{ patient.prosthesisCode }}</td>
+            <td><strong>{{ patient.adherence }}%</strong></td>
+            <td :class="patient.symmetry >= 90 ? 'good' : 'neutral'"><strong>{{ patient.symmetry }}%</strong></td>
+            <td><status-badge :tone="statusTone[patient.status]">{{ t(`patients.status.${patient.status}`) }}</status-badge></td>
+            <td class="right">
                 <span class="actions">
                   <router-link :to="`/patients/${patient.id}`" class="actions__primary">{{ t('patients.record') }}</router-link>
                   <router-link to="/alerts" class="actions__secondary">{{ t('patients.telemetry') }}</router-link>
                 </span>
-              </td>
-            </tr>
-            <tr v-if="store.patientsLoaded && !filteredPatients.length">
-              <td colspan="8" class="empty">{{ t('patients.empty') }}</td>
-            </tr>
+            </td>
+          </tr>
+          <tr v-if="store.patientsLoaded && !filteredPatients.length">
+            <td colspan="8" class="empty">{{ t('patients.empty') }}</td>
+          </tr>
           </tbody>
         </table>
       </div>

@@ -109,37 +109,37 @@ function viewPatientReport(patientId) {
       <div class="table-wrap">
         <table class="patients">
           <thead>
-            <tr>
-              <th>{{ t('dashboard.patients.col-patient') }}</th>
-              <th>{{ t('dashboard.patients.col-amputation') }}</th>
-              <th>{{ t('dashboard.patients.col-k-level') }}</th>
-              <th>{{ t('dashboard.patients.col-adherence') }}</th>
-              <th>{{ t('dashboard.patients.col-symmetry') }}</th>
-              <th>{{ t('dashboard.patients.col-status') }}</th>
-              <th class="right">{{ t('dashboard.patients.col-action') }}</th>
-            </tr>
+          <tr>
+            <th>{{ t('dashboard.patients.col-patient') }}</th>
+            <th>{{ t('dashboard.patients.col-amputation') }}</th>
+            <th>{{ t('dashboard.patients.col-k-level') }}</th>
+            <th>{{ t('dashboard.patients.col-adherence') }}</th>
+            <th>{{ t('dashboard.patients.col-symmetry') }}</th>
+            <th>{{ t('dashboard.patients.col-status') }}</th>
+            <th class="right">{{ t('dashboard.patients.col-action') }}</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="p in patients" :key="p.id">
-              <td>
-                <span class="patient-cell"><avatar-initials :name="p.name" :tone="p.avatar"/><strong>{{ p.name }}</strong></span>
-              </td>
-              <td>{{ p.amputation }}</td>
-              <td><strong>{{ p.kLevel }}</strong></td>
-              <td>
+          <tr v-for="p in patients" :key="p.id">
+            <td>
+              <span class="patient-cell"><avatar-initials :name="p.name" :tone="p.avatar"/><strong>{{ p.name }}</strong></span>
+            </td>
+            <td>{{ p.amputation }}</td>
+            <td><strong>{{ p.kLevel }}</strong></td>
+            <td>
                 <span class="adherence">
                   <span class="adherence__track"><span class="adherence__bar" :class="{ 'adherence__bar--low': p.adherence < 80 }" :style="{ width: `${p.adherence}%` }"/></span>
                   <strong>{{ p.adherence }}%</strong>
                 </span>
-              </td>
-              <td :class="p.symmetry >= 90 ? 'good' : ''"><strong>{{ p.symmetry }}%</strong></td>
-              <td><status-badge :tone="statusTone[p.status]">{{ t(`dashboard.status.${p.status}`) }}</status-badge></td>
-              <td class="right">
-                <button type="button" class="action-btn" @click="viewPatientReport(p.id)">
-                  {{ t('dashboard.patients.view-record') }}
-                </button>
-              </td>
-            </tr>
+            </td>
+            <td :class="p.symmetry >= 90 ? 'good' : ''"><strong>{{ p.symmetry }}%</strong></td>
+            <td><status-badge :tone="statusTone[p.status]">{{ t(`dashboard.status.${p.status}`) }}</status-badge></td>
+            <td class="right">
+              <button type="button" class="action-btn" @click="viewPatientReport(p.id)">
+                {{ t('dashboard.patients.view-record') }}
+              </button>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>

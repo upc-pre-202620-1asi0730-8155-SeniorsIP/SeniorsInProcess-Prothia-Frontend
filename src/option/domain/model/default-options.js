@@ -1,4 +1,3 @@
-
 /**
  * Menu used when the options endpoint is not reachable, so the portal always has navigation.
  * Mirrors the `options` collection of server/db.json.

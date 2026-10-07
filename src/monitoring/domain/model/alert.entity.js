@@ -17,7 +17,7 @@ export class Alert {
      * @param {string} [params.occurredAt=''] - ISO date-time of the event.
      */
     constructor({ id = null, patientId = null, patientName = '', deviationType = '', recordedValue = '',
-                  threshold = '', severity = 'warning', status = 'pending', occurredAt = '' }) {
+                    threshold = '', severity = 'warning', status = 'pending', occurredAt = '' }) {
         this.id = id;
         this.patientId = patientId;
         this.patientName = patientName;

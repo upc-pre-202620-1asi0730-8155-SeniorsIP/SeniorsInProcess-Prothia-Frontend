@@ -12,6 +12,7 @@ const store = useMonitoringStore();
 
 onMounted(() => store.fetchAlerts());
 
+/** Formats an ISO date-time as dd/mm hh:mm AM|PM. */
 function formatDate(iso) {
   const date = new Date(iso);
   const pad = n => String(n).padStart(2, '0');
@@ -43,36 +44,36 @@ const resolve = alert => {
     <div class="table-wrap">
       <table class="table">
         <thead>
-          <tr>
-            <th>{{ t('alerts.history.columns.date') }}</th>
-            <th>{{ t('alerts.history.columns.patient') }}</th>
-            <th>{{ t('alerts.history.columns.deviation') }}</th>
-            <th>{{ t('alerts.history.columns.value') }}</th>
-            <th class="center">{{ t('alerts.history.columns.severity') }}</th>
-            <th class="center">{{ t('alerts.history.columns.status') }}</th>
-            <th class="center">{{ t('alerts.history.columns.action') }}</th>
-          </tr>
+        <tr>
+          <th>{{ t('alerts.history.columns.date') }}</th>
+          <th>{{ t('alerts.history.columns.patient') }}</th>
+          <th>{{ t('alerts.history.columns.deviation') }}</th>
+          <th>{{ t('alerts.history.columns.value') }}</th>
+          <th class="center">{{ t('alerts.history.columns.severity') }}</th>
+          <th class="center">{{ t('alerts.history.columns.status') }}</th>
+          <th class="center">{{ t('alerts.history.columns.action') }}</th>
+        </tr>
         </thead>
         <tbody>
-          <tr v-for="alert in store.alerts" :key="alert.id">
-            <td class="date">{{ formatDate(alert.occurredAt) }}</td>
-            <td class="patient">{{ alert.patientName }}</td>
-            <td>{{ alert.deviationType }}</td>
-            <td :class="['value', alert.isPending ? `value--${alert.severity}` : '']">
-              {{ alert.recordedValue }} ({{ t('alerts.history.threshold', { threshold: alert.threshold }) }})
-            </td>
-            <td class="center"><status-badge :tone="severityTone[alert.severity]">{{ t(`alerts.history.severity.${alert.severity}`) }}</status-badge></td>
-            <td :class="['center', 'status', `status--${alert.isPending ? alert.severity : 'resolved'}`]">
-              {{ t(`alerts.history.status.${alert.status}`) }}
-            </td>
-            <td class="center">
-              <button v-if="alert.isPending" type="button" class="resolve" @click="resolve(alert)">{{ t('alerts.history.resolve') }}</button>
-              <span v-else class="attended">{{ t('alerts.history.attended') }}</span>
-            </td>
-          </tr>
-          <tr v-if="store.alertsLoaded && !store.alerts.length">
-            <td colspan="7" class="empty">{{ t('alerts.history.empty') }}</td>
-          </tr>
+        <tr v-for="alert in store.alerts" :key="alert.id">
+          <td class="date">{{ formatDate(alert.occurredAt) }}</td>
+          <td class="patient">{{ alert.patientName }}</td>
+          <td>{{ alert.deviationType }}</td>
+          <td :class="['value', alert.isPending ? `value--${alert.severity}` : '']">
+            {{ alert.recordedValue }} ({{ t('alerts.history.threshold', { threshold: alert.threshold }) }})
+          </td>
+          <td class="center"><status-badge :tone="severityTone[alert.severity]">{{ t(`alerts.history.severity.${alert.severity}`) }}</status-badge></td>
+          <td :class="['center', 'status', `status--${alert.isPending ? alert.severity : 'resolved'}`]">
+            {{ t(`alerts.history.status.${alert.status}`) }}
+          </td>
+          <td class="center">
+            <button v-if="alert.isPending" type="button" class="resolve" @click="resolve(alert)">{{ t('alerts.history.resolve') }}</button>
+            <span v-else class="attended">{{ t('alerts.history.attended') }}</span>
+          </td>
+        </tr>
+        <tr v-if="store.alertsLoaded && !store.alerts.length">
+          <td colspan="7" class="empty">{{ t('alerts.history.empty') }}</td>
+        </tr>
         </tbody>
       </table>
     </div>
