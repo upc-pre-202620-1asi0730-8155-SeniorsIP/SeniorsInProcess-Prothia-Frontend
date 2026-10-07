@@ -18,7 +18,7 @@ const { t } = useI18n();
 <template>
   <aside class="sidebar">
     <div class="sidebar__brand">
-      <span class="sidebar__logo" aria-hidden="true"/>
+      <img class="sidebar__logo" src="/prothia-logo.png" alt="" aria-hidden="true"/>
       <div>
         <p class="sidebar__name">PROTHIA</p>
         <p class="sidebar__tagline">{{ t('shell.brand-tagline') }}</p>
@@ -58,7 +58,8 @@ const { t } = useI18n();
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: var(--pt-teal);
+  background: #ffffff;
+  object-fit: contain;
 }
 .sidebar__name { margin: 0; font-size: 1.0625rem; font-weight: 800; letter-spacing: 0.02em; line-height: 1.2; }
 .sidebar__tagline {
