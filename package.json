@@ -2,7 +2,7 @@
   "name": "seniors_in_process",
   "description": "Prothia is a web application that connects patients, prosthetics technicians, and rehabilitation physicians to facilitate patient rehabilitation, communication, data and information recording, and prosthetic maintenance. It is intended to illustrate Domain-Driven Design (DDD) principles. It is built using Vue, Axios, Vite, Pinia, and PrimeVue with JavaScript.",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
