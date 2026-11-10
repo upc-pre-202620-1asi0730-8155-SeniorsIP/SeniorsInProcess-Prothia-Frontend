@@ -1,6 +1,10 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
 import {Option} from "../domain/model/option.entity.js";
+import {OptionApi} from "../infrastructure/option-api.js";
+import {OptionAssembler} from "../infrastructure/option.assembler.js";
+
+const optionApi = new OptionApi();
 
 const defaultOptions = [
     new Option({ id: 1, label: 'option.dashboard',     to: '/home',          icon: 'pi-th-large',               exact: true,  badge: 0, order: 1 }),
@@ -18,8 +22,17 @@ const useOptionStore = defineStore('option', () => {
     const optionsLoaded = ref(false);
 
     function fetchOptions() {
-        options.value = defaultOptions.slice().sort((a, b) => a.order - b.order);
-        optionsLoaded.value = true;
+        return optionApi.getOptions().then(response => {
+            const loaded = OptionAssembler.toEntitiesFromResponse(response);
+            if (loaded && loaded.length > 0) {
+                options.value = loaded;
+            }
+            optionsLoaded.value = true;
+        }).catch(error => {
+            errors.value.push(error);
+            options.value = defaultOptions.slice().sort((a, b) => a.order - b.order);
+            optionsLoaded.value = true;
+        });
     }
 
     return {

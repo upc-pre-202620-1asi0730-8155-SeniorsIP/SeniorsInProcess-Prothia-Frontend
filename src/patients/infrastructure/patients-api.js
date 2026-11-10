@@ -43,4 +43,20 @@ export class PatientsApi extends BaseApi {
     createPatient(resource) {
         return this.#patientsEndpoint.create(resource);
     }
+
+    /**
+     * @param {Object} resource - Patient resource payload (must include id).
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the updated patient response.
+     */
+    updatePatient(resource) {
+        return this.#patientsEndpoint.update(resource.id, resource);
+    }
+
+    /**
+     * @param {number|string} id - Patient identifier.
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the delete response.
+     */
+    deletePatient(id) {
+        return this.#patientsEndpoint.delete(id);
+    }
 }
