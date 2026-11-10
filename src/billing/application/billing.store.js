@@ -29,7 +29,10 @@ export const useBillingStore = defineStore('billing', () => {
     async function fetchSubscription() {
         try {
             const response = await billingApi.getSubscription();
-            subscription.value = ClinicSubscriptionAssembler.toEntityFromResource(response.data);
+            const data = Array.isArray(response.data) ? response.data[0] : response.data;
+            if (data) {
+                subscription.value = ClinicSubscriptionAssembler.toEntityFromResource(data);
+            }
             subscriptionLoaded.value = true;
         } catch (error) {
             errors.value.push(error);
