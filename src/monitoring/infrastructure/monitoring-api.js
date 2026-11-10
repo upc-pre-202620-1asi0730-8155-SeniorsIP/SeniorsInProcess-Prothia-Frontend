@@ -3,7 +3,7 @@ import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
 
 const monitoringApiUrl       = import.meta.env.VITE_MONITORING_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_2 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
 const alertsEndpointPath     = import.meta.env.VITE_ALERTS_ENDPOINT_PATH || "/alerts";
-const thresholdsEndpointPath = import.meta.env.VITE_THRESHOLDS_ENDPOINT_PATH || "/thresholds";
+const thresholdsEndpointPath = import.meta.env.VITE_THRESHOLDS_ENDPOINT_PATH || "/threshold-profiles";
 
 /**
  * Infrastructure gateway for Monitoring bounded-context endpoints.
@@ -31,7 +31,7 @@ export class MonitoringApi extends BaseApi {
 
     /** @param {Object} resource - Alert payload (must include id). @returns {Promise<import('axios').AxiosResponse>} Updated alert. */
     updateAlert(resource) {
-        return this.#alertsEndpoint.update(resource.id, resource);
+        return this.http.put(`${alertsEndpointPath}/${resource.id}/resolve`, resource);
     }
 
     /** @returns {Promise<import('axios').AxiosResponse>} Threshold profiles response. */
