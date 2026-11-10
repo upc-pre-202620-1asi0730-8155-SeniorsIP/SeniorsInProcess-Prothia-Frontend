@@ -31,16 +31,12 @@ async function sendMessage() {
 
   // Simulated auto-reply from therapist specialist
   setTimeout(() => {
-    communicationStore.messages.push({
-      id: Date.now() + 1,
-      sender: 'therapist',
-      senderName: 'Lic. Diego Salazar',
-      senderRole: 'Fisioterapeuta',
-      text: 'Recibido Carlos, revisaré los registros de telemetría de tu prótesis PR-2026-TT-084 y te responderé en breve.',
-      timestamp: 'Ahora',
-      isSystem: false,
-      status: 'delivered'
-    });
+    communicationStore.sendMessage(
+      'Recibido Carlos, revisaré los registros de telemetría de tu prótesis PR-2026-TT-084 y te responderé en breve.',
+      'Lic. Diego Salazar',
+      'Fisioterapeuta',
+      'therapist'
+    );
   }, 2500);
 }
 </script>

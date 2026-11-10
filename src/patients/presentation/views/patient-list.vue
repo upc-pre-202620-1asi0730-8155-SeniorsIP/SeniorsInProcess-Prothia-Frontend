@@ -1,6 +1,6 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
-import { useI18n } from "vue-i18n";
+import {computed, onMounted, ref} from "vue";
+import {useI18n} from "vue-i18n";
 import usePatientStore from "../../application/patient.store.js";
 import SurfaceCard from "../../../shared/presentation/components/surface-card.vue";
 import StatusBadge from "../../../shared/presentation/components/status-badge.vue";
@@ -9,48 +9,55 @@ import AvatarInitials from "../../../shared/presentation/components/avatar-initi
 const { t } = useI18n();
 const store = usePatientStore();
 
-const search = ref('');
-const amputation = ref(null);
-const status = ref(null);
+const query = ref('');
+const statusFilter = ref('all');
+const kLevelFilter = ref('all');
 
-onMounted(() => store.fetchPatients());
+onMounted(() => {
+  if (!store.patientsLoaded) store.fetchPatients();
+});
 
-const statusTone = { alert: 'warning', critical: 'danger', stable: 'success' };
-const avatarTones = ['mint', 'blue', 'slate'];
-const avatarTone = patient => avatarTones[patient.id % avatarTones.length];
-
-const amputationOptions = computed(() => [
-  { label: t('patients.filters.all-levels'), value: null },
-  ...[...new Set(store.patients.map(p => p.amputation))].map(level => ({ label: level, value: level }))
-]);
 const statusOptions = computed(() => [
-  { label: t('patients.filters.all-statuses'), value: null },
-  ...['alert', 'critical', 'stable'].map(key => ({ label: t(`patients.status.${key}`), value: key }))
+  { label: t('patients.filters.all-status'), value: 'all' },
+  { label: t('patients.status.stable'),      value: 'stable' },
+  { label: t('patients.status.alert'),       value: 'alert' },
+  { label: t('patients.status.critical'),    value: 'critical' }
+]);
+
+const kLevelOptions = computed(() => [
+  { label: t('patients.filters.all-k-levels'), value: 'all' },
+  { label: 'K1', value: 'K1' },
+  { label: 'K2', value: 'K2' },
+  { label: 'K3', value: 'K3' },
+  { label: 'K4', value: 'K4' }
 ]);
 
 const filteredPatients = computed(() => {
-  const query = search.value.trim().toLowerCase();
-  return store.patients.filter(patient =>
-      (!amputation.value || patient.amputation === amputation.value) &&
-      (!status.value || patient.status === status.value) &&
-      (!query || [patient.fullName, patient.dni, patient.prosthesisCode].some(field => field.toLowerCase().includes(query)))
-  );
+  const text = query.value.trim().toLowerCase();
+  return store.patients.filter(patient => {
+    const matchesText = !text || [patient.fullName, patient.dni, patient.prosthesisCode]
+        .some(field => (field || '').toLowerCase().includes(text));
+    const matchesStatus = statusFilter.value === 'all' || patient.status === statusFilter.value;
+    const matchesKLevel = kLevelFilter.value === 'all' || patient.kLevel === kLevelFilter.value;
+    return matchesText && matchesStatus && matchesKLevel;
+  });
 });
+
+const statusTone = { stable: 'success', alert: 'warning', critical: 'danger' };
+const avatarTone = { stable: 'teal',    alert: 'amber',   critical: 'red' };
 </script>
 
 <template>
   <div class="patients">
-    <surface-card>
+    <surface-card padding="1.25rem 1.5rem">
       <div class="filters">
-        <pv-icon-field class="filters__search">
-          <pv-input-icon class="pi pi-search"/>
-          <pv-input-text v-model="search" class="w-full" :placeholder="t('patients.search-placeholder')"
-                         :aria-label="t('patients.search-placeholder')"/>
-        </pv-icon-field>
-        <pv-select v-model="amputation" :options="amputationOptions" option-label="label" option-value="value"
-                   class="filters__select" :aria-label="t('patients.filters.all-levels')"/>
-        <pv-select v-model="status" :options="statusOptions" option-label="label" option-value="value"
-                   class="filters__select filters__select--short" :aria-label="t('patients.filters.all-statuses')"/>
+        <pv-input-text v-model="query" class="filters__search"
+                       :placeholder="t('patients.filters.search-placeholder')"
+                       :aria-label="t('patients.filters.search-placeholder')"/>
+        <pv-select v-model="statusFilter" :options="statusOptions" option-label="label" option-value="value"
+                   :aria-label="t('patients.filters.all-status')"/>
+        <pv-select v-model="kLevelFilter" :options="kLevelOptions" option-label="label" option-value="value"
+                   :aria-label="t('patients.filters.all-k-levels')"/>
       </div>
     </surface-card>
 
@@ -61,36 +68,35 @@ const filteredPatients = computed(() => {
           <tr>
             <th>{{ t('patients.columns.patient') }}</th>
             <th>{{ t('patients.columns.amputation') }}</th>
-            <th>{{ t('patients.columns.k-level') }}</th>
+            <th class="center">{{ t('patients.columns.k-level') }}</th>
             <th>{{ t('patients.columns.prosthesis') }}</th>
-            <th>{{ t('patients.columns.adherence') }}</th>
-            <th>{{ t('patients.columns.symmetry') }}</th>
-            <th>{{ t('patients.columns.status') }}</th>
-            <th class="right">{{ t('patients.columns.actions') }}</th>
+            <th class="center">{{ t('patients.columns.adherence') }}</th>
+            <th class="center">{{ t('patients.columns.symmetry') }}</th>
+            <th class="center">{{ t('patients.columns.status') }}</th>
+            <th class="right">{{ t('patients.columns.action') }}</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="patient in filteredPatients" :key="patient.id">
             <td>
-                <span class="person">
-                  <avatar-initials :name="patient.fullName" :tone="avatarTone(patient)" :size="40"/>
-                  <span>
-                    <strong class="person__name">{{ patient.fullName }}</strong>
-                    <span class="person__meta">DNI {{ patient.dni }} • {{ t('patients.years', { age: patient.age }) }}</span>
-                  </span>
-                </span>
+              <div class="patient-cell">
+                <avatar-initials :name="patient.fullName" :tone="avatarTone[patient.status]"/>
+                <div>
+                  <strong class="patient-cell__name">{{ patient.fullName }}</strong>
+                  <span class="patient-cell__meta">DNI: {{ patient.dni }} • {{ patient.age }} {{ t('patients.years') }}</span>
+                </div>
+              </div>
             </td>
-            <td class="amputation">{{ patient.amputation }}</td>
-            <td><span class="klevel">{{ patient.kLevel }}</span></td>
-            <td class="mono">{{ patient.prosthesisCode }}</td>
-            <td><strong>{{ patient.adherence }}%</strong></td>
-            <td :class="patient.symmetry >= 90 ? 'good' : 'neutral'"><strong>{{ patient.symmetry }}%</strong></td>
-            <td><status-badge :tone="statusTone[patient.status]">{{ t(`patients.status.${patient.status}`) }}</status-badge></td>
+            <td>{{ patient.amputation }}</td>
+            <td class="center"><span class="k-pill">{{ patient.kLevel }}</span></td>
+            <td><code class="serial">{{ patient.prosthesisCode }}</code></td>
+            <td class="center"><strong>{{ patient.adherence }}%</strong></td>
+            <td class="center"><strong class="symmetry">{{ patient.symmetry }}%</strong></td>
+            <td class="center">
+              <status-badge :tone="statusTone[patient.status]">{{ t(`patients.status.${patient.status}`) }}</status-badge>
+            </td>
             <td class="right">
-                <span class="actions">
-                  <router-link :to="`/patients/${patient.id}`" class="actions__primary">{{ t('patients.record') }}</router-link>
-                  <router-link to="/alerts" class="actions__secondary">{{ t('patients.telemetry') }}</router-link>
-                </span>
+              <router-link :to="{ path: '/reports', query: { patientId: patient.id } }" class="record-link">{{ t('patients.view-record') }} →</router-link>
             </td>
           </tr>
           <tr v-if="store.patientsLoaded && !filteredPatients.length">
@@ -104,40 +110,29 @@ const filteredPatients = computed(() => {
 </template>
 
 <style scoped>
-.patients { display: flex; flex-direction: column; gap: 1.5rem; max-width: 1180px; margin: 0 auto; }
-.filters { display: flex; align-items: center; gap: 1rem; }
-.filters__search { flex: 1; min-width: 0; }
-.filters__select { width: 290px; font-size: 0.8125rem; font-weight: 600; }
-.filters__select--short { width: 200px; }
+.patients { display: flex; flex-direction: column; gap: 1.25rem; max-width: 1180px; margin: 0 auto; }
+.filters { display: grid; grid-template-columns: minmax(0, 1fr) 210px 180px; gap: 0.9rem; align-items: center; }
 
 .table-wrap { overflow-x: auto; }
-.table { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 0.8125rem; }
-.table th {
-  padding: 1.25rem 1rem; text-align: left; font-size: 0.6875rem; font-weight: 700;
-  letter-spacing: 0.04em; text-transform: uppercase; color: var(--pt-muted); border-bottom: 1px solid var(--pt-border);
-}
-.table td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--pt-border); }
+.table { width: 100%; min-width: 820px; border-collapse: collapse; font-size: 0.8125rem; }
+.table th { padding: 0.9rem 1rem; background: #f4f6f8; text-align: left; font-size: 0.75rem; font-weight: 700; color: #4a5a6a; }
+.table td { padding: 0.95rem 1rem; border-bottom: 1px solid var(--pt-border); vertical-align: middle; }
 .table tbody tr:last-child td { border-bottom: none; }
 .table th:first-child, .table td:first-child { padding-left: 1.5rem; }
 .table th:last-child, .table td:last-child { padding-right: 1.5rem; }
+.center { text-align: center !important; }
 .right { text-align: right !important; }
 
-.person { display: inline-flex; align-items: center; gap: 0.85rem; }
-.person__name { display: block; font-size: 0.875rem; color: var(--pt-ink); }
-.person__meta { display: block; font-size: 0.75rem; color: var(--pt-muted); }
-.amputation { font-weight: 500; color: var(--pt-navy-600); }
-.klevel { display: inline-block; padding: 2px 10px; border-radius: 6px; background: #e9eef3; font-weight: 700; color: var(--pt-navy-600); }
-.mono { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 0.75rem; color: #4a5a6a; }
-.good { color: var(--pt-green); }
-.neutral { color: var(--pt-navy-600); }
-.actions { display: inline-flex; gap: 1rem; font-weight: 600; }
-.actions__primary { color: var(--pt-teal-strong); font-weight: 700; }
-.actions__secondary { color: var(--pt-muted); }
-.actions a:hover { text-decoration: underline; }
+.patient-cell { display: flex; align-items: center; gap: 0.75rem; }
+.patient-cell__name { display: block; font-size: 0.875rem; color: var(--pt-ink); }
+.patient-cell__meta { display: block; font-size: 0.75rem; color: var(--pt-muted); }
+
+.k-pill { display: inline-block; padding: 2px 9px; border-radius: 6px; background: #eef2f6; font-weight: 700; font-size: 0.75rem; color: var(--pt-navy-600); }
+.serial { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8125rem; color: var(--pt-muted); }
+.symmetry { color: var(--pt-teal-strong); }
+.record-link { font-weight: 700; color: var(--pt-teal-strong); white-space: nowrap; }
+.record-link:hover { text-decoration: underline; }
 .empty { padding: 2rem !important; text-align: center; color: var(--pt-muted); }
 
-@media (max-width: 860px) {
-  .filters { flex-direction: column; align-items: stretch; }
-  .filters__select, .filters__select--short { width: 100%; }
-}
+@media (max-width: 720px) { .filters { grid-template-columns: minmax(0, 1fr); } }
 </style>
