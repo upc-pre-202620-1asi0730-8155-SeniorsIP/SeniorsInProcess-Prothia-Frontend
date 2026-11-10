@@ -3,8 +3,8 @@ import { BaseEndpoint } from "../../shared/infrastructure/base-endpoint.js";
 
 const workshopApiUrl               = import.meta.env.VITE_WORKSHOP_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_1 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
 const prosthesesEndpointPath       = import.meta.env.VITE_PROSTHESES_ENDPOINT_PATH || "/prostheses";
-const mechanicalAlertsEndpointPath = import.meta.env.VITE_MECHANICAL_ALERTS_ENDPOINT_PATH || "/mechanicalAlerts";
-const maintenancesEndpointPath     = import.meta.env.VITE_MAINTENANCES_ENDPOINT_PATH || "/maintenanceSchedules";
+const mechanicalAlertsEndpointPath = import.meta.env.VITE_MECHANICAL_ALERTS_ENDPOINT_PATH || "/mechanical-alerts";
+const maintenancesEndpointPath     = import.meta.env.VITE_MAINTENANCES_ENDPOINT_PATH || "/maintenance-schedules";
 
 /**
  * Infrastructure gateway for Workshop / Profiles & Asset bounded-context endpoints.
