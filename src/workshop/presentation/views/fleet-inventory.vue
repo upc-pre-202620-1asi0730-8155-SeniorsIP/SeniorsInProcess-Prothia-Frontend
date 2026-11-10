@@ -61,8 +61,7 @@ function saveAssociation() {
     return;
   }
   if (selectedProsthesisForAssociate.value) {
-    selectedProsthesisForAssociate.value.patientName = patientToAssociate.value;
-    selectedProsthesisForAssociate.value.status = 'optimal';
+    store.associateProsthesis(selectedProsthesisForAssociate.value.id, patientToAssociate.value, 'Rehab Lima Sur');
     toast.add({
       severity: 'success',
       summary: 'Prótesis Vinculada',

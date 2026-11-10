@@ -16,8 +16,7 @@ function openCalibrationModal() {
 }
 
 function confirmCalibration() {
-  store.maintenances.unshift({
-    id: Date.now(),
+  store.createMaintenance({
     serialNumber: 'PR-2026-TT-084',
     patientName: 'Carlos Mendoza Arias',
     scheduledDate: calibrationDate.value,
