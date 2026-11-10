@@ -6,15 +6,10 @@ import {ThresholdProfile} from "../domain/model/threshold-profile.entity.js";
  * @class ThresholdAssembler
  */
 export class ThresholdAssembler {
-    /** @param {Object} resource - Profile resource. @returns {ThresholdProfile} Profile entity. */
     static toEntityFromResource(resource) {
         return new ThresholdProfile({...resource});
     }
 
-    /**
-     * @param {import('axios').AxiosResponse<Array<Object>|Object>} response - HTTP response with profile resources.
-     * @returns {ThresholdProfile[]} Profile entities.
-     */
     static toEntitiesFromResponse(response) {
         if (response.status !== 200) {
             console.error(`${response.status}, ${response.statusText}`);
@@ -23,5 +18,24 @@ export class ThresholdAssembler {
         let resources = response.data instanceof Array ? response.data : response.data['thresholds'];
 
         return resources.map(resource => this.toEntityFromResource(resource));
+    }
+
+    static toCreateResourceFromEntity(entity) {
+        return {
+            patientId: Number(entity.patientId),
+            pelvicTilt: Number(entity.pelvicTilt),
+            asymmetry: Number(entity.asymmetry),
+            cadence: Number(entity.cadence),
+            impactPeak: Number(entity.impactPeak)
+        };
+    }
+
+    static toUpdateResourceFromEntity(entity) {
+        return {
+            pelvicTilt: Number(entity.pelvicTilt),
+            asymmetry: Number(entity.asymmetry),
+            cadence: Number(entity.cadence),
+            impactPeak: Number(entity.impactPeak)
+        };
     }
 }

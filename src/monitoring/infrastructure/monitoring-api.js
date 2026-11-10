@@ -1,51 +1,55 @@
 import {BaseApi} from "../../shared/infrastructure/base-api.js";
 import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
+import {ThresholdAssembler} from "./threshold.assembler.js";
+import {GaitSessionAssembler} from "./gait-session.assembler.js";
 
-const monitoringApiUrl       = import.meta.env.VITE_MONITORING_API_URL || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL_2 || import.meta.env.VITE_PROTHIA_PLATFORM_API_URL;
-const alertsEndpointPath     = import.meta.env.VITE_ALERTS_ENDPOINT_PATH || "/alerts";
-const thresholdsEndpointPath = import.meta.env.VITE_THRESHOLDS_ENDPOINT_PATH || "/threshold-profiles";
+const alertsEndpointPath = import.meta.env.VITE_ALERTS_ENDPOINT_PATH;
+const thresholdsEndpointPath = import.meta.env.VITE_THRESHOLDS_ENDPOINT_PATH;
+const gaitSessionsEndpointPath = import.meta.env.VITE_GAIT_SESSIONS_ENDPOINT_PATH || '/gait-sessions';
 
 /**
- * Infrastructure gateway for Monitoring bounded-context endpoints.
+ * Monitoring Bounded Context API client handling alerts, thresholds and gait sessions.
  *
  * @class MonitoringApi
  * @extends BaseApi
  */
 export class MonitoringApi extends BaseApi {
-    /** @type {BaseEndpoint} @private */
     #alertsEndpoint;
-    /** @type {BaseEndpoint} @private */
     #thresholdsEndpoint;
+    #gaitSessionsEndpoint;
 
-    /** Creates endpoint clients for alerts and thresholds. */
     constructor() {
-        super(monitoringApiUrl);
+        super();
         this.#alertsEndpoint = new BaseEndpoint(this, alertsEndpointPath);
         this.#thresholdsEndpoint = new BaseEndpoint(this, thresholdsEndpointPath);
+        this.#gaitSessionsEndpoint = new BaseEndpoint(this, gaitSessionsEndpointPath);
     }
 
-    /** @returns {Promise<import('axios').AxiosResponse>} Alerts response. */
     getAlerts() {
         return this.#alertsEndpoint.getAll();
     }
 
-    /** @param {Object} resource - Alert payload (must include id). @returns {Promise<import('axios').AxiosResponse>} Updated alert. */
-    updateAlert(resource) {
-        return this.http.put(`${alertsEndpointPath}/${resource.id}/resolve`, resource);
+    resolveAlert(id) {
+        return this.http.put(`${alertsEndpointPath}/${id}/resolve`);
     }
 
-    /** @returns {Promise<import('axios').AxiosResponse>} Threshold profiles response. */
     getThresholdProfiles() {
         return this.#thresholdsEndpoint.getAll();
     }
 
-    /** @param {Object} resource - Profile payload. @returns {Promise<import('axios').AxiosResponse>} Created profile. */
-    createThresholdProfile(resource) {
-        return this.#thresholdsEndpoint.create(resource);
+    createThresholdProfile(profile) {
+        return this.#thresholdsEndpoint.create(ThresholdAssembler.toCreateResourceFromEntity(profile));
     }
 
-    /** @param {Object} resource - Profile payload (must include id). @returns {Promise<import('axios').AxiosResponse>} Updated profile. */
-    updateThresholdProfile(resource) {
-        return this.#thresholdsEndpoint.update(resource.id, resource);
+    updateThresholdProfile(profile) {
+        return this.#thresholdsEndpoint.update(profile.id, ThresholdAssembler.toUpdateResourceFromEntity(profile));
+    }
+
+    getGaitSessions() {
+        return this.#gaitSessionsEndpoint.getAll();
+    }
+
+    createGaitSession(session) {
+        return this.#gaitSessionsEndpoint.create(GaitSessionAssembler.toResourceFromEntity(session));
     }
 }
