@@ -1,7 +1,7 @@
 ﻿import { BaseApi } from "../../shared/infrastructure/base-api.js";
 import { BaseEndpoint } from "../../shared/infrastructure/base-endpoint.js";
 
-const subscriptionEndpointPath = "/clinicSubscription";
+const subscriptionEndpointPath = "/clinic-subscriptions";
 const invoicesEndpointPath = "/invoices";
 
 /**
@@ -37,7 +37,8 @@ export class BillingApi extends BaseApi {
      * @returns {Promise<import('axios').AxiosResponse>}
      */
     updateSubscription(resource) {
-        return this.http.put(subscriptionEndpointPath, resource);
+        const id = resource?.id || 1;
+        return this.http.put(`${subscriptionEndpointPath}/${id}`, resource);
     }
 
     /**
