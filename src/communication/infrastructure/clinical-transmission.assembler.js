@@ -22,7 +22,7 @@ export class ClinicalTransmissionAssembler {
             status: resource.status,
             statusLabel: resource.statusLabel,
             summary: resource.summary,
-            createdAt: resource.createdAt
+            createdAt: resource.createdAt || resource.createdAtDate
         });
     }
 
@@ -43,7 +43,8 @@ export class ClinicalTransmissionAssembler {
             status: entity.status,
             statusLabel: entity.statusLabel,
             summary: entity.summary,
-            createdAt: entity.createdAt
+            createdAt: entity.createdAt,
+            createdAtDate: entity.createdAt
         };
     }
 
