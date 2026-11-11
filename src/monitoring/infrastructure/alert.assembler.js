@@ -21,7 +21,7 @@ export class AlertAssembler {
             console.error(`${response.status}, ${response.statusText}`);
             return [];
         }
-        let resources = response.data instanceof Array ? response.data : response.data['alerts'];
+        let resources = Array.isArray(response.data) ? response.data : (response.data?.['alerts'] || []);
 
         return resources
             .map(resource => this.toEntityFromResource(resource))

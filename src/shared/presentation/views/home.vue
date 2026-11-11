@@ -69,7 +69,7 @@ function viewPatientReport(patientId) {
 <template>
   <div class="dashboard">
     <div class="dashboard__stats">
-      <stat-card :label="t('dashboard.stats.monitored')" :value="monitoredCount" suffix="/ 50 cupos"
+      <stat-card :label="t('dashboard.stats.monitored')" :value="monitoredCount" :suffix="t('dashboard.stats.monitored-suffix')"
                  :caption="t('dashboard.stats.monitored-caption')" caption-tone="green"/>
       <stat-card :label="t('dashboard.stats.adherence')" :value="averageAdherence" value-tone="teal" suffix="+5.2%" suffix-tone="green"
                  :caption="t('dashboard.stats.adherence-caption')"/>

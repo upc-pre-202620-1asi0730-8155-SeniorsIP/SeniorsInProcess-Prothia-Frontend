@@ -20,7 +20,7 @@ export class PrescriptionAssembler {
             console.error(`${response.status}, ${response.statusText}`);
             return [];
         }
-        let resources = response.data instanceof Array ? response.data : response.data['prescriptions'];
+        let resources = Array.isArray(response.data) ? response.data : (response.data?.['prescriptions'] || []);
 
         return resources.map(resource => this.toEntityFromResource(resource));
     }

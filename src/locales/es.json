@@ -1,4 +1,8 @@
 {
+  "about": {
+    "title": "Acerca de Prothia",
+    "content": "Prothia es una plataforma de telemetría clínica y biomecánica para la rehabilitación protésica."
+  },
   "page-not-found": {
     "title": "Página no encontrada",
     "content": "La ruta {unavailable-route} no está disponible.",
@@ -18,6 +22,7 @@
   "dashboard": {
     "stats": {
       "monitored": "Pacientes en monitoreo",
+      "monitored-suffix": "/ 50 cupos",
       "monitored-caption": "100% con telemetría activa",
       "adherence": "Adherencia domiciliaria global",
       "adherence-caption": "Meta clínica superada (>80%)",
@@ -71,8 +76,11 @@
     "new": "Nuevo Paciente",
     "search-placeholder": "Buscar por nombre, DNI o ID de prótesis...",
     "filters": {
+      "search-placeholder": "Buscar por nombre, DNI o ID de prótesis...",
       "all-levels": "Todos los niveles de amputación",
-      "all-statuses": "Todos los estados"
+      "all-k-levels": "Todos los K-Levels",
+      "all-statuses": "Todos los estados",
+      "all-status": "Todos los estados"
     },
     "columns": {
       "patient": "Paciente & Contacto",
@@ -82,7 +90,8 @@
       "adherence": "Adherencia",
       "symmetry": "Simetría",
       "status": "Estado",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "action": "Acción"
     },
     "status": {
       "alert": "Alerta activa",
@@ -91,6 +100,7 @@
     },
     "years": "{age} años",
     "record": "Ficha",
+    "view-record": "Ver Expediente",
     "telemetry": "Telemetría",
     "empty": "No se encontraron pacientes con esos filtros."
   },

@@ -1,4 +1,8 @@
 {
+  "about": {
+    "title": "About Prothia",
+    "content": "Prothia is a clinical and biomechanical telemetry platform for prosthetic rehabilitation."
+  },
   "page-not-found": {
     "title": "Page Not Found",
     "content": "The path {unavailable-route} is not available.",
@@ -18,6 +22,7 @@
   "dashboard": {
     "stats": {
       "monitored": "Patients monitored",
+      "monitored-suffix": "/ 50 slots",
       "monitored-caption": "100% with active telemetry",
       "adherence": "Overall home adherence",
       "adherence-caption": "Clinical goal exceeded (>80%)",
@@ -71,8 +76,11 @@
     "new": "New Patient",
     "search-placeholder": "Search by name, ID number or prosthesis ID...",
     "filters": {
+      "search-placeholder": "Search by name, ID number or prosthesis ID...",
       "all-levels": "All amputation levels",
-      "all-statuses": "All statuses"
+      "all-k-levels": "All K-Levels",
+      "all-statuses": "All statuses",
+      "all-status": "All statuses"
     },
     "columns": {
       "patient": "Patient & Contact",
@@ -82,7 +90,8 @@
       "adherence": "Adherence",
       "symmetry": "Symmetry",
       "status": "Status",
-      "actions": "Actions"
+      "actions": "Actions",
+      "action": "Action"
     },
     "status": {
       "alert": "Active alert",
@@ -91,6 +100,7 @@
     },
     "years": "{age} years old",
     "record": "Record",
+    "view-record": "View Record",
     "telemetry": "Telemetry",
     "empty": "No patients match those filters."
   },

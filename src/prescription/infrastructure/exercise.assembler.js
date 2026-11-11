@@ -20,7 +20,7 @@ export class ExerciseAssembler {
             console.error(`${response.status}, ${response.statusText}`);
             return [];
         }
-        let resources = response.data instanceof Array ? response.data : response.data['exercises'];
+        let resources = Array.isArray(response.data) ? response.data : (response.data?.['exercises'] || []);
 
         return resources.map(resource => this.toEntityFromResource(resource));
     }
