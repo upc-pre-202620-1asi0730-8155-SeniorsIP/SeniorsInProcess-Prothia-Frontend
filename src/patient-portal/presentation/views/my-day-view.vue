@@ -1,5 +1,5 @@
-<script setup>
-import { ref, computed } from "vue";
+﻿<script setup>
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useToast } from "primevue/usetoast";
@@ -9,6 +9,10 @@ const router = useRouter();
 const toast = useToast();
 const { t } = useI18n();
 const prescriptionStore = usePrescriptionStore();
+
+onMounted(() => {
+  if (!prescriptionStore.prescriptionsLoaded) prescriptionStore.fetchPrescriptions();
+});
 
 const isActivityDone = computed(() => {
   const target = prescriptionStore.patientExercises.find(e => e.id === 1);

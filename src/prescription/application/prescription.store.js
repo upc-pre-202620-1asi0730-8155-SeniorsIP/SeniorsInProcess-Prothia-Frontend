@@ -10,60 +10,28 @@ import {PrescriptionApi} from "../infrastructure/prescription-api.js";
 import {ExerciseAssembler} from "../infrastructure/exercise.assembler.js";
 import {PrescriptionAssembler} from "../infrastructure/prescription.assembler.js";
 import {Prescription} from "../domain/model/prescription.entity.js";
-
-import {Exercise} from "../domain/model/exercise.entity.js";
-
-const defaultExercises = [
-    new Exercise({
-        id: 1,
-        name: 'Transferencia de Peso Lateral y Apoyo Unipodal',
-        focus: ['Equilibrio', 'Carga progresiva en muñón']
-    }),
-    new Exercise({
-        id: 2,
-        name: 'Elevación de Talón Asistida en Barra',
-        focus: ['Fuerza', 'Tríceps sural y estabilidad']
-    }),
-    new Exercise({
-        id: 3,
-        name: 'Puente de Glúteos con Prótesis',
-        focus: ['Extensión de cadera', 'Anti-compensación lumbar']
-    }),
-    new Exercise({
-        id: 4,
-        name: 'Subida de Escalón (Step-up) 10 cm',
-        focus: ['Coordinación', 'Potencia cuádriceps']
-    })
-];
-
-const defaultPrescriptions = [
-    new Prescription({
-        id: 1,
-        patientId: 1,
-        phaseNumber: 2,
-        phaseName: 'Ajuste',
-        durationWeeks: 4,
-        frequencyPerWeek: 5,
-        exercises: [
-            {
-                exerciseId: 1,
-                name: 'Transferencia de Peso Lateral y Apoyo Unipodal',
-                sets: 3,
-                reps: 12,
-                restSeconds: 45
-            },
-            {
-                exerciseId: 2,
-                name: 'Elevación de Talón Asistida en Barra',
-                sets: 3,
-                reps: 10,
-                restSeconds: 60
-            }
-        ]
-    })
-];
+import {useCommunicationStore} from "../../communication/application/communication.store.js";
 
 const prescriptionApi = new PrescriptionApi();
+
+const EXERCISE_INSTRUCTIONS_MAP = {
+    1: {
+        category: 'Equilibrio y Carga',
+        instructions: 'De pie junto a una barra de apoyo, descarga gradualmente el 100% de tu peso sobre la prótesis durante 5 segundos antes de retornar a la posición bípeda.'
+    },
+    2: {
+        category: 'Fuerza de Gemelo y Muñón',
+        instructions: 'Elevación rítmica del talón del pie contralateral para compensar el brazo de palanca y activar la musculatura del muñón residual.'
+    },
+    3: {
+        category: 'Rango Articular',
+        instructions: 'Mantener el torso erguido evitando la lordosis lumbar excesiva al balancear la extremidad protésica hacia adelante.'
+    },
+    4: {
+        category: 'Patrón de Marcha',
+        instructions: 'Sesión de 15 minutos en pasillo interior con sincronización de sensores inerciales IMU.'
+    }
+};
 
 /**
  * Reactive store that exposes Prescription commands and queries.
@@ -71,10 +39,10 @@ const prescriptionApi = new PrescriptionApi();
  * @returns {Object} Store state and actions.
  */
 const usePrescriptionStore = defineStore('prescription', () => {
-    /** @type {import('vue').Ref<Exercise[]>} */
-    const exercises = ref([...defaultExercises]);
+    /** @type {import('vue').Ref<import('../domain/model/exercise.entity.js').Exercise[]>} */
+    const exercises = ref([]);
     /** @type {import('vue').Ref<Prescription[]>} Stored prescriptions. */
-    const prescriptions = ref([...defaultPrescriptions]);
+    const prescriptions = ref([]);
     /** @type {import('vue').Ref<?Prescription>} Plan being edited (a copy, not the stored one). */
     const draft = ref(null);
     /** @type {import('vue').Ref<any[]>} Active rehabilitation exercises for home tracking. */
@@ -135,8 +103,36 @@ const usePrescriptionStore = defineStore('prescription', () => {
 
     /** @type {import('vue').Ref<Error[]>} */
     const errors = ref([]);
-    const exercisesLoaded = ref(true);
-    const prescriptionsLoaded = ref(true);
+    const exercisesLoaded = ref(false);
+    const prescriptionsLoaded = ref(false);
+
+    function syncPatientExercisesFromPrescription() {
+        const activePlan = prescriptions.value.find(p => Number(p.patientId) === 1) || prescriptions.value[0];
+        if (activePlan && activePlan.exercises?.length) {
+            const prevMap = new Map(patientExercises.value.map(item => [item.id, item]));
+            patientExercises.value = activePlan.exercises.map((ex, idx) => {
+                const exId = Number(ex.exerciseId || ex.id || idx + 1);
+                const meta = EXERCISE_INSTRUCTIONS_MAP[exId] || {
+                    category: 'Rehabilitación Protésica',
+                    instructions: 'Ejecuta el movimiento de forma controlada manteniendo la alineación de la pelvis y descarga simétrica.'
+                };
+                const prev = prevMap.get(exId);
+                return {
+                    id: exId,
+                    num: String(idx + 1).padStart(2, '0'),
+                    category: meta.category,
+                    title: ex.name,
+                    instructions: meta.instructions,
+                    param1: prev?.isDone ? `Series realizadas: ${ex.sets} de ${ex.sets}` : `Series: ${ex.sets}`,
+                    param2: prev?.isDone ? `Esfuerzo percibido: ${prev.rpe}` : `Repeticiones: ${ex.reps}`,
+                    param3: prev?.isDone ? null : `Descanso: ${ex.restSeconds} segundos`,
+                    isDone: prev ? prev.isDone : false,
+                    doneTime: prev ? prev.doneTime : null,
+                    rpe: prev ? prev.rpe : null
+                };
+            });
+        }
+    }
 
     /**
      * Marks a home exercise as completed and records perceived effort.
@@ -153,16 +149,21 @@ const usePrescriptionStore = defineStore('prescription', () => {
             target.param2 = `Esfuerzo percibido: ${effortScore}/10`;
             target.param3 = null;
             target.rpe = `${effortScore}/10`;
+
+            const doneCount = patientExercises.value.filter(e => e.isDone).length;
+            const total = patientExercises.value.length;
+            const percentage = Math.round((doneCount / total) * 100);
+            const commStore = useCommunicationStore();
+            commStore.addSystemNotification(
+                `El paciente Carlos Mendoza completó el ejercicio "${target.title}" (Esfuerzo Borg: ${effortScore}/10). Progreso diario: ${doneCount}/${total} (${percentage}%).`
+            );
         }
     }
 
     /** Loads the exercise library. */
     function fetchExercises() {
         return prescriptionApi.getExercises().then(response => {
-            const list = ExerciseAssembler.toEntitiesFromResponse(response);
-            if (list.length > 0) {
-                exercises.value = list;
-            }
+            exercises.value = ExerciseAssembler.toEntitiesFromResponse(response);
             exercisesLoaded.value = true;
         }).catch(error => {
             errors.value.push(error);
@@ -173,10 +174,8 @@ const usePrescriptionStore = defineStore('prescription', () => {
     /** Loads stored prescriptions. */
     function fetchPrescriptions() {
         return prescriptionApi.getPrescriptions().then(response => {
-            const list = PrescriptionAssembler.toEntitiesFromResponse(response);
-            if (list.length > 0) {
-                prescriptions.value = list;
-            }
+            prescriptions.value = PrescriptionAssembler.toEntitiesFromResponse(response);
+            syncPatientExercisesFromPrescription();
             prescriptionsLoaded.value = true;
         }).catch(error => {
             errors.value.push(error);
@@ -189,7 +188,7 @@ const usePrescriptionStore = defineStore('prescription', () => {
      * @returns {Prescription|undefined} Current stored prescription of the patient, if any.
      */
     function getPrescriptionByPatientId(patientId) {
-        return prescriptions.value.find(prescription => prescription.patientId === patientId);
+        return prescriptions.value.find(prescription => Number(prescription.patientId) === Number(patientId));
     }
 
     /**
@@ -199,41 +198,59 @@ const usePrescriptionStore = defineStore('prescription', () => {
     function selectPatient(patientId) {
         const stored = getPrescriptionByPatientId(patientId);
         draft.value = stored
-            ? new Prescription({...stored})
-            : new Prescription({ patientId });
+            ? new Prescription({
+                ...stored,
+                exercises: (stored.exercises || []).map(ex => ({...ex}))
+            })
+            : new Prescription({ patientId: Number(patientId) });
     }
 
     /**
-     * Persists the draft, creating or updating the patient's prescription optimistically.
+     * Persists the draft, creating or updating the patient's prescription in the backend.
      * @returns {Promise<any>} Resolves when the plan was saved.
      */
     function saveDraft() {
         if (!draft.value) return Promise.resolve();
-        const resource = JSON.parse(JSON.stringify(draft.value));
-        if (!resource.id) {
-            resource.id = Date.now();
-        }
-        const localEntity = new Prescription({ ...resource });
-        const existingIndex = prescriptions.value.findIndex(p => p.patientId === localEntity.patientId || p.id === localEntity.id);
-        if (existingIndex >= 0) {
-            prescriptions.value[existingIndex] = localEntity;
-        } else {
-            prescriptions.value.push(localEntity);
-        }
+        const existingInDb = prescriptions.value.find(p => Number(p.patientId) === Number(draft.value.patientId) && p.id && p.id < 1000000000000);
 
-        const request = draft.value.id && draft.value.id < 1000000000000
-            ? prescriptionApi.updatePrescription(resource)
+        const resource = {
+            id: existingInDb ? existingInDb.id : undefined,
+            patientId: Number(draft.value.patientId),
+            phaseNumber: Number(draft.value.phaseNumber || 2),
+            phaseName: String(draft.value.phaseName || 'Ajuste'),
+            durationWeeks: Number(draft.value.durationWeeks || 4),
+            frequencyPerWeek: Number(draft.value.frequencyPerWeek || 5),
+            exercises: (draft.value.exercises || []).map(ex => ({
+                exerciseId: Number(ex.exerciseId || ex.id || 1),
+                name: String(ex.name || ''),
+                sets: Number(ex.sets || 3),
+                reps: Number(ex.reps || 10),
+                restSeconds: Number(ex.restSeconds || 45)
+            }))
+        };
+
+        const request = existingInDb
+            ? prescriptionApi.updatePrescription(resource).catch(err => {
+                if (err?.response?.status === 404) {
+                    return prescriptionApi.createPrescription(resource);
+                }
+                throw err;
+            })
             : prescriptionApi.createPrescription(resource);
+
         return request.then(response => {
             const saved = PrescriptionAssembler.toEntityFromResource(response.data);
-            const index = prescriptions.value.findIndex(prescription => prescription.id === saved.id || prescription.patientId === saved.patientId);
+            const index = prescriptions.value.findIndex(prescription => prescription.id === saved.id || Number(prescription.patientId) === Number(saved.patientId));
             if (index >= 0) prescriptions.value[index] = saved; else prescriptions.value.push(saved);
-            draft.value = new Prescription({...saved});
+            draft.value = new Prescription({
+                ...saved,
+                exercises: (saved.exercises || []).map(ex => ({...ex}))
+            });
+            syncPatientExercisesFromPrescription();
             return saved;
         }).catch(error => {
             errors.value.push(error);
-            draft.value = localEntity;
-            return localEntity;
+            throw error;
         });
     }
 

@@ -1,8 +1,12 @@
-<script setup>
-import { ref, computed } from "vue";
+﻿<script setup>
+import { ref, computed, onMounted } from "vue";
 import { useMonitoringStore } from "../../../monitoring/application/monitoring.store.js";
 
 const monitoringStore = useMonitoringStore();
+
+onMounted(() => {
+  if (!monitoringStore.gaitSessionsLoaded) monitoringStore.fetchGaitSessions();
+});
 
 const activePeriod = ref('month');
 const selectedSession = ref(null);

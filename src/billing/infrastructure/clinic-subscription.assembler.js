@@ -1,47 +1,51 @@
-﻿import { ClinicSubscription } from "../domain/model/clinic-subscription.entity.js";
+import {ClinicSubscription} from "../domain/model/clinic-subscription.entity.js";
 
 /**
- * Transforms ClinicSubscription DTO resources into domain entities and vice versa.
+ * Assembler for converting between ClinicSubscription entities and API resources.
+ *
+ * @class ClinicSubscriptionAssembler
  */
 export class ClinicSubscriptionAssembler {
-    /**
-     * Converts a raw API resource into a ClinicSubscription domain entity.
-     * @param {Object} resource - Raw data object from API.
-     * @returns {ClinicSubscription} Domain entity instance.
-     */
     static toEntityFromResource(resource) {
         if (!resource) return new ClinicSubscription();
         return new ClinicSubscription({
+            id: resource.id || 1,
             planName: resource.planName,
             status: resource.status,
             planType: resource.planType,
-            annualFee: resource.annualFee,
-            monthlyEquivalent: resource.monthlyEquivalent,
+            annualFee: Number(resource.annualFee ?? 1428),
+            monthlyEquivalent: Number(resource.monthlyEquivalent ?? 119),
             startDate: resource.startDate,
             renewalDate: resource.renewalDate,
-            usedQuota: resource.usedQuota,
-            totalQuota: resource.totalQuota,
-            paymentMethod: resource.paymentMethod
+            usedQuota: Number(resource.usedQuota ?? 24),
+            totalQuota: Number(resource.totalQuota ?? 50),
+            paymentMethod: resource.paymentMethod ? {...resource.paymentMethod} : null
         });
     }
 
-    /**
-     * Converts a domain entity into a serializable resource.
-     * @param {ClinicSubscription} entity - Domain entity.
-     * @returns {Object} Plain JavaScript object suitable for JSON transmission.
-     */
+    static toEntityFromResponse(response) {
+        if (response.status !== 200) {
+            console.error(`${response.status}: ${response.statusText}`);
+            return null;
+        }
+        const payload = Array.isArray(response.data) ? response.data[0] : response.data;
+        if (!payload) return null;
+        return this.toEntityFromResource(payload);
+    }
+
     static toResourceFromEntity(entity) {
         return {
+            id: entity.id || 1,
             planName: entity.planName,
             status: entity.status,
             planType: entity.planType,
-            annualFee: entity.annualFee,
-            monthlyEquivalent: entity.monthlyEquivalent,
+            annualFee: Number(entity.annualFee),
+            monthlyEquivalent: Number(entity.monthlyEquivalent),
             startDate: entity.startDate,
             renewalDate: entity.renewalDate,
-            usedQuota: entity.usedQuota,
-            totalQuota: entity.totalQuota,
-            paymentMethod: entity.paymentMethod
+            usedQuota: Number(entity.usedQuota),
+            totalQuota: Number(entity.totalQuota),
+            paymentMethod: {...entity.paymentMethod}
         };
     }
 }

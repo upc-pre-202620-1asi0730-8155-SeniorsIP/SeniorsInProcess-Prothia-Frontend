@@ -35,4 +35,13 @@ export class AnalyticsApi extends BaseApi {
     getReportById(id) {
         return this.#reportsEndpoint.getById(id);
     }
+
+    /**
+     * Creates a new clinical report in the backend.
+     * @param {Object} resource - Report payload.
+     * @returns {Promise<import('axios').AxiosResponse>}
+     */
+    createReport(resource) {
+        return this.#reportsEndpoint.create(resource);
+    }
 }

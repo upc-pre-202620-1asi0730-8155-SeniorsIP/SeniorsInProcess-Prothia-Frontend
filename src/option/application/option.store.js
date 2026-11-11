@@ -1,60 +1,46 @@
-/**
- * Application service store for the Option bounded context.
- * It loads the navigation menu and keeps UI-facing state.
- *
- * @module useOptionStore
- */
 import {defineStore} from "pinia";
-import {computed, ref} from "vue";
+import {ref} from "vue";
+import {Option} from "../domain/model/option.entity.js";
 import {OptionApi} from "../infrastructure/option-api.js";
 import {OptionAssembler} from "../infrastructure/option.assembler.js";
-import {defaultOptions} from "../domain/model/default-options.js";
 
 const optionApi = new OptionApi();
 
-/**
- * Reactive store that exposes Option commands and queries.
- *
- * @returns {Object} Store state and actions.
- */
-const useOptionStore = defineStore('option', () => {
-    /**
-     * List of option entities.
-     * @type {import('vue').Ref<Option[]>}
-     */
-    const options = ref([]);
-    /**
-     * List of errors encountered during API operations.
-     * @type {import('vue').Ref<Error[]>}
-     */
-    const errors = ref([]);
-    /**
-     * Whether options have been loaded.
-     * @type {import('vue').Ref<boolean>}
-     */
-    const optionsLoaded = ref(false);
-    /**
-     * Number of loaded options.
-     * @type {import('vue').ComputedRef<number>}
-     */
-    const optionsCount = computed(() => optionsLoaded.value ? options.value.length : 0);
+const defaultOptions = [
+    new Option({ id: 1, label: 'option.dashboard',     to: '/home',          icon: 'pi-th-large',               exact: true,  badge: 0, order: 1 }),
+    new Option({ id: 2, label: 'option.patients',      to: '/patients',      icon: 'pi-users',                  exact: false, badge: 0, order: 2 }),
+    new Option({ id: 3, label: 'option.prescriptions', to: '/prescriptions', icon: 'pi-clipboard',              exact: false, badge: 0, order: 3 }),
+    new Option({ id: 4, label: 'option.alerts',        to: '/alerts',        icon: 'pi-exclamation-triangle',   exact: false, badge: 3, order: 4 }),
+    new Option({ id: 5, label: 'option.workshops',     to: '/workshops',     icon: 'pi-arrow-right-arrow-left', exact: false, badge: 0, order: 5 }),
+    new Option({ id: 6, label: 'option.reports',       to: '/reports',       icon: 'pi-file',                   exact: false, badge: 0, order: 6 }),
+    new Option({ id: 7, label: 'option.subscription',  to: '/subscription',  icon: 'pi-credit-card',            exact: false, badge: 0, order: 7 })
+];
 
-    /**
-     * Loads options from infrastructure. If the API fails, falls back to the default menu.
-     * @returns {void}
-     */
+const useOptionStore = defineStore('option', () => {
+    const options = ref(defaultOptions);
+    const errors = ref([]);
+    const optionsLoaded = ref(false);
+
     function fetchOptions() {
-        optionApi.getOptions().then(response => {
-            options.value = OptionAssembler.toEntitiesFromResponse(response);
+        return optionApi.getOptions().then(response => {
+            const loaded = OptionAssembler.toEntitiesFromResponse(response);
+            if (loaded && loaded.length > 0) {
+                options.value = loaded;
+            }
             optionsLoaded.value = true;
         }).catch(error => {
             errors.value.push(error);
-            options.value = defaultOptions.map(resource => OptionAssembler.toEntityFromResource(resource));
+            options.value = defaultOptions.slice().sort((a, b) => a.order - b.order);
             optionsLoaded.value = true;
         });
     }
 
-    return { options, errors, optionsLoaded, optionsCount, fetchOptions };
+    return {
+        options,
+        errors,
+        optionsLoaded,
+        fetchOptions
+    };
 });
 
 export default useOptionStore;

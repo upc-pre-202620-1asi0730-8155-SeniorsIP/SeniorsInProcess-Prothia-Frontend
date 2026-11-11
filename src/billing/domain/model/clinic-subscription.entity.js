@@ -1,23 +1,11 @@
-﻿/**
+/**
  * Represents the institutional clinical subscription of a healthcare facility.
  *
  * @class ClinicSubscription
  */
 export class ClinicSubscription {
-    /**
-     * @param {Object} params - Initialization parameters.
-     * @param {string} [params.planName='Plan Centro de Rehabilitación'] - Name of the subscription plan.
-     * @param {string} [params.status='Activo • Vigente'] - Status badge label.
-     * @param {string} [params.planType='Plan Clínico Anual'] - Type of plan (Annual, Monthly).
-     * @param {number} [params.annualFee=1428] - Annual billing amount in USD.
-     * @param {number} [params.monthlyEquivalent=119] - Equivalent monthly breakdown in USD.
-     * @param {string} [params.startDate='12 de Septiembre de 2026'] - Contract subscription date.
-     * @param {string} [params.renewalDate='12 de Septiembre de 2027'] - Next scheduled renewal date.
-     * @param {number} [params.usedQuota=24] - Currently assigned patient slots.
-     * @param {number} [params.totalQuota=50] - Maximum contracted patient slots.
-     * @param {Object} [params.paymentMethod=null] - Registered payment method details.
-     */
     constructor({
+                    id = 1,
                     planName = 'Plan Centro de Rehabilitación',
                     status = 'Activo • Vigente',
                     planType = 'Plan Clínico Anual',
@@ -29,6 +17,7 @@ export class ClinicSubscription {
                     totalQuota = 50,
                     paymentMethod = null
                 } = {}) {
+        this.id = id;
         this.planName = planName;
         this.status = status;
         this.planType = planType;
@@ -46,27 +35,15 @@ export class ClinicSubscription {
         };
     }
 
-    /**
-     * Calculates the quota occupancy percentage.
-     * @returns {number} Integer between 0 and 100.
-     */
     get quotaPercentage() {
         if (!this.totalQuota) return 0;
         return Math.round((this.usedQuota / this.totalQuota) * 100);
     }
 
-    /**
-     * Computes the remaining available patient slots.
-     * @returns {number} Available slots.
-     */
     get availableQuota() {
         return Math.max(0, this.totalQuota - this.usedQuota);
     }
 
-    /**
-     * Determines whether the clinic is approaching its patient capacity limit (>80%).
-     * @returns {boolean} True if near capacity.
-     */
     get isNearLimit() {
         return this.quotaPercentage >= 80;
     }

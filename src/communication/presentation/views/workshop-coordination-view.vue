@@ -74,7 +74,7 @@ async function handleTransmit() {
     await communicationStore.transmitReport({
       patientId: selectedPatientId.value,
       patientName: selectedPatient ? selectedPatient.label.split(' (')[0] : 'Carlos Mendoza Arias',
-      patientDni: '45892104',
+      patientDni: patientStore.getPatientById(selectedPatientId.value)?.dni || '45892104',
       workshopName: linkedWorkshop.value,
       sharedModules: selectedModules.value,
       technicalNotes: technicalNotes.value,

@@ -42,4 +42,32 @@ export class ClinicalReportAssembler {
         if (!response || !Array.isArray(response.data)) return [];
         return response.data.map(item => this.toEntityFromResource(item));
     }
+
+    static toResourceFromEntity(entity) {
+        return {
+            reportCode: entity.reportCode,
+            issueDate: entity.issueDate,
+            clinicName: entity.clinicName,
+            clinicUnit: entity.clinicUnit,
+            patientId: Number(entity.patientId),
+            patientName: entity.patientName,
+            dni: entity.dni,
+            age: Number(entity.age),
+            diagnosis: entity.diagnosis,
+            prosthesisCode: entity.prosthesisCode,
+            evaluationPeriod: entity.evaluationPeriod,
+            summary: entity.summary,
+            indicators: (entity.indicators || []).map(ind => ({
+                name: ind.name,
+                value: ind.value,
+                normalRange: ind.normalRange,
+                evaluation: ind.evaluation,
+                status: ind.status || 'normal'
+            })),
+            medicalRecommendation: entity.medicalRecommendation,
+            therapistName: entity.therapistName,
+            therapistRole: entity.therapistRole,
+            therapistRegistry: entity.therapistRegistry
+        };
+    }
 }

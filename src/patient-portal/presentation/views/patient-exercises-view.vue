@@ -1,10 +1,14 @@
-<script setup>
-import { ref, computed } from "vue";
+﻿<script setup>
+import { ref, computed, onMounted } from "vue";
 import { useToast } from "primevue/usetoast";
 import { usePrescriptionStore } from "../../../prescription/application/prescription.store.js";
 
 const toast = useToast();
 const prescriptionStore = usePrescriptionStore();
+
+onMounted(() => {
+  if (!prescriptionStore.prescriptionsLoaded) prescriptionStore.fetchPrescriptions();
+});
 
 const showFeedbackDialog = ref(false);
 const selectedExercise = ref(null);

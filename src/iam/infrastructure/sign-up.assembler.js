@@ -11,7 +11,7 @@ export class SignUpAssembler {
      * @returns {SignUpResource|null} Parsed resource when the response is successful; otherwise null.
      */
     static toResourceFromResponse(response) {
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 201) {
             console.error(`${response.status}, ${response.statusText}`);
             return null;
         }
