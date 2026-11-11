@@ -13,6 +13,7 @@ const usePatientStore = defineStore('patients', () => {
     function fetchPatients() {
         return patientsApi.getPatients().then(response => {
             patients.value = PatientAssembler.toEntitiesFromResponse(response);
+            errors.value = [];
             patientsLoaded.value = true;
         }).catch(error => {
             errors.value.push(error);
@@ -26,9 +27,11 @@ const usePatientStore = defineStore('patients', () => {
     }
 
     function addPatient(patient) {
+        errors.value = [];
         return patientsApi.createPatient(PatientAssembler.toResourceFromEntity(patient)).then(response => {
             const created = PatientAssembler.toEntityFromResource(response.data);
             patients.value.push(created);
+            errors.value = [];
             return created;
         }).catch(error => {
             errors.value.push(error);
