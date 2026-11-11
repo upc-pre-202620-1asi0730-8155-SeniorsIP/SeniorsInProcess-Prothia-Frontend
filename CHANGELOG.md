@@ -7,36 +7,56 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [Unreleased]
 
 ### Added
-- Documentation improvements for the project release process and changelog maintenance.
-- Planned release notes structure for upcoming feature work.
+- Planned improvements for onboarding flows and navigation clarity across the Prothia clinical experience.
+- Documentation updates to align release preparation and changelog maintenance with project standards.
 
 ### Changed
-- Standardized changelog format to improve traceability and readability across releases.
+- Refined release-note structure to better reflect the actual product scope and platform evolution.
 
-## [1.0.1] - 2026-11-08
+### Fixed
+- Clarified changelog entries to distinguish between current product features and planned enhancements.
+
+## [1.0.2] - 2026-11-11
 
 ### Added
-- Initial frontend release for the Prothia digital rehabilitation platform.
-- Role-based access flow for amputee patients, prosthetics technicians, and therapists/physicians.
-- Main dashboard with KPIs for patient volume, adherence, and alert status.
-- Patient management screens and clinical data entry workflow.
-- Prescription editor for therapeutic plans and exercise scheduling.
-- Monitoring center for gait alerts, thresholds, and anomaly tracking.
-- Workshop module for prosthesis inventory, preventive maintenance, and fleet operations.
-- Clinical reporting and analytics views.
-- Billing and subscription management flow.
-- Communication module for coordination between clinical and workshop teams.
-- Patient portal with recovery dashboard, telemetry, exercise tracking, and messaging.
-- Mock API integration via JSON Server to support frontend demo scenarios.
+- Structured version documentation for the project release lifecycle.
+- Improved changelog entries to capture notable project updates in a consistent format.
+
+### Changed
+- Reorganized release notes to better follow Keep a Changelog conventions.
+- Standardized wording and versioning metadata for maintainability and traceability.
+
+### Fixed
+- Corrected changelog clarity and consistency for the current project state.
+- Improved release documentation readability for future updates.
+
+### Removed
+- No removals in this patch release.
+
+## [1.0.1] - 2026-11-11
+
+### Added
+- Initial Prothia frontend release for a digital rehabilitation platform focused on prosthetic care.
+- Role-based entry flow for amputee patients, prosthetics technicians, and therapists/physicians.
+- Dashboard views with KPIs for patient load, adherence, and monitoring alerts.
+- Patient management screens and clinical data capture workflows.
+- Prescription editor for therapeutic plans and rehabilitation scheduling.
+- Monitoring module for gait alerts, threshold tracking, and anomaly review.
+- Workshop module for prosthesis inventory, maintenance, and operational planning.
+- Reporting and analytics views for clinical outcomes and team oversight.
+- Billing and subscription management flows for the service lifecycle.
+- Communication tools for coordination between clinical and technical teams.
+- Patient portal with recovery dashboard, telemetry overview, exercise tracking, and messaging.
+- Mock API layer powered by JSON Server to support frontend demo scenarios.
 - Modular architecture organized by domain, application, infrastructure, and presentation layers.
 
 ### Changed
-- Frontend implementation aligned with a Domain-Driven Design structure using Vue 3, Vite, Pinia, Vue Router, and PrimeVue.
-- Global app shell and navigation standardized for multi-role platform usage.
+- Frontend implementation aligned to a Domain-Driven Design structure using Vue 3, Vite, Pinia, Vue Router, and PrimeVue.
+- Global application shell and navigation standardized for a multi-role clinical workflow.
 - Internationalization support added for English and Spanish interfaces.
 
 ### Fixed
-- Initial project structure stabilized for consistent module organization and navigation flow.
+- Stabilized the initial project structure to keep module organization, routing, and navigation consistent.
 
 ### Removed
-- No removals in the initial release.
+- No removals in the initial public frontend release.
