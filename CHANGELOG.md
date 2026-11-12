@@ -8,6 +8,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 No unreleased changes yet.
 
+## [2.0.0] - 2026-11-12
+
+### Added
+- Backend API integration for patient lists, patient portal views, prosthesis inventory, maintenance schedules, clinical messages, gait sessions, alerts, prescriptions, clinical reports, billing subscriptions, and option data.
+- Firebase Hosting configuration for deployment.
+
+### Changed
+- Configured environment-specific API URLs and endpoint paths for local .NET backend development and production hosting.
+- Updated billing and monitoring API clients to match backend endpoint and response contracts.
+
+### Fixed
+- Corrected patient-list handling, including clearing store errors after successful requests and guarding response mapping.
+- Fixed missing patient-list translations and API response mappings for subscriptions, clinical transmissions, and sign-up responses.
+
+### Removed
+- No removals in this patch release.
+
 ## [1.0.4] - 2026-11-11
 
 ### Added
