@@ -6,15 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+No unreleased changes yet.
+
+## [1.0.3] - 2026-11-11
+
 ### Added
 - Planned improvements for onboarding flows and navigation clarity across the Prothia clinical experience.
 - Documentation updates to align release preparation and changelog maintenance with project standards.
 
 ### Changed
 - Refined release-note structure to better reflect the actual product scope and platform evolution.
+- Standardized the release history to align the current project version with Keep a Changelog conventions.
 
 ### Fixed
 - Clarified changelog entries to distinguish between current product features and planned enhancements.
+- Improved release documentation readability for the current project version.
 
 ## [1.0.2] - 2026-11-11
 
