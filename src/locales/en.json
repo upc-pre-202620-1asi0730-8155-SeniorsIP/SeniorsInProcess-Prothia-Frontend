@@ -71,8 +71,11 @@
     "new": "New Patient",
     "search-placeholder": "Search by name, ID number or prosthesis ID...",
     "filters": {
+      "search-placeholder": "Search by name, ID number or prosthesis ID...",
       "all-levels": "All amputation levels",
-      "all-statuses": "All statuses"
+      "all-statuses": "All statuses",
+      "all-status": "All statuses",
+      "all-k-levels": "All K-Levels"
     },
     "columns": {
       "patient": "Patient & Contact",
@@ -82,14 +85,16 @@
       "adherence": "Adherence",
       "symmetry": "Symmetry",
       "status": "Status",
-      "actions": "Actions"
+      "actions": "Actions",
+      "action": "Action"
     },
     "status": {
       "alert": "Active alert",
       "critical": "Critical",
       "stable": "Stable"
     },
-    "years": "{age} years old",
+    "years": "years old",
+    "view-record": "View Record",
     "record": "Record",
     "telemetry": "Telemetry",
     "empty": "No patients match those filters."

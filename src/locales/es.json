@@ -71,8 +71,11 @@
     "new": "Nuevo Paciente",
     "search-placeholder": "Buscar por nombre, DNI o ID de prótesis...",
     "filters": {
+      "search-placeholder": "Buscar por nombre, DNI o ID de prótesis...",
       "all-levels": "Todos los niveles de amputación",
-      "all-statuses": "Todos los estados"
+      "all-statuses": "Todos los estados",
+      "all-status": "Todos los estados",
+      "all-k-levels": "Todos los K-Levels"
     },
     "columns": {
       "patient": "Paciente & Contacto",
@@ -82,14 +85,16 @@
       "adherence": "Adherencia",
       "symmetry": "Simetría",
       "status": "Estado",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "action": "Acción"
     },
     "status": {
       "alert": "Alerta activa",
       "critical": "Crítico",
       "stable": "Estable"
     },
-    "years": "{age} años",
+    "years": "años",
+    "view-record": "Ver Expediente",
     "record": "Ficha",
     "telemetry": "Telemetría",
     "empty": "No se encontraron pacientes con esos filtros."
