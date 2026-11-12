@@ -8,6 +8,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 No unreleased changes yet.
 
+## [1.0.4] - 2026-11-11
+
+### Added
+- Release metadata updates for the current project version.
+- Documentation alignment to keep the changelog consistent with project evolution.
+
+### Changed
+- Bumped the project version to 1.0.4 to reflect the latest release state.
+- Refined changelog structure to maintain consistency with Keep a Changelog conventions.
+
+### Fixed
+- Corrected version documentation so the release history accurately represents the latest project milestone.
+- Improved clarity of release notes for maintainers and stakeholders.
+
 ## [1.0.3] - 2026-11-11
 
 ### Added
